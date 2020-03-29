@@ -1,0 +1,6 @@
+temp/
+.import/
+.mono/
+*.import
+*.png
+
