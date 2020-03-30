@@ -1,19 +1,19 @@
-extends "res://src/Actors/Actor.gd"
+extends Actor
 
-func _ready():
-	set_physics_process(false)
-	_velocity.x = -speed.x
-	
-func _on_StompDetector_body_entered(
-	body: PhysicsBody2D) -> void:
-	if body.global_position.y > get_node("StompDetector").global_position.y:
-		return
-	get_node("CollisionShape2D").disabled = true
-	queue_free()
+class_name Enemy
+
+var is_right_direction: = true
 
 func _physics_process(delta: float) -> void:
-	_velocity.y += gravity * delta
-	if is_on_wall():
-		_velocity.x *= -1.0
-	_velocity.y = move_and_slide(_velocity, 
-	FLOOR_NORMAL).y;
+	if is_on_floor():
+		if is_right_direction:
+			moveRight()
+		else:
+			moveLeft()
+		if is_on_wall():
+			if is_right_direction:
+				is_right_direction = false
+			else:
+				is_right_direction = true
+			
+

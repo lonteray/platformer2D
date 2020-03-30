@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
@@ -6,10 +6,6 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 49.0
 height = 50.0
-
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 56.9444
-height = 41.6667
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.72, 0.72 )
@@ -32,12 +28,3 @@ limit_left = 0
 limit_smoothed = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
-
-[node name="EnemyDetector" type="Area2D" parent="."]
-modulate = Color( 0.266667, 0.223529, 0.960784, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
-position = Vector2( 0, -73.6111 )
-shape = SubResource( 2 )
-[connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
-[connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]

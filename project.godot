@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "Actor",
 "language": "GDScript",
 "path": "res://src/Actors/Actor.gd"
+}, {
+"base": "Actor",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://src/Actors/Enemy.gd"
+}, {
+"base": "Node",
+"class": "Fraction",
+"language": "GDScript",
+"path": "res://src/abstract/Fraction.gd"
 } ]
 _global_script_class_icons={
-"Actor": ""
+"Actor": "",
+"Enemy": "",
+"Fraction": ""
 }
 
 [application]
