@@ -1,16 +1,12 @@
 extends Node
 class_name Fraction
 
-var num
-var denom
+export var num: = 0
+export var denom: = 1
 const epsilon = 0.00000001
 
-func _ready():
-	num = 0
-	denom = 1
-
 func calc_value() -> float:
-	return num / denom
+	return float(num) / denom
 	
 func compare(other: Fraction) -> int:
 	if calc_value() < other.calc_value():

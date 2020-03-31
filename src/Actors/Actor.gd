@@ -14,15 +14,14 @@ var left_direction: = Vector2(-speed.x, 0.0)
 
 func _physics_process(delta):
 	#gravity force calculating
-	print("Actor method")
-	if !is_on_floor():
-		velocity.y += gravity * delta
-		velocity.y = move_and_slide(velocity, FLOOR_NORMAL).y
+	velocity.y += gravity * delta
+	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 	
-func moveRight() -> void:
-	right_direction.y = velocity.y
-	move_and_slide(right_direction, FLOOR_NORMAL)
+func move_right(intensity = 1.0) -> void:
+	velocity.x = speed.x * intensity
 	
-func moveLeft() -> void:
-	left_direction.y = velocity.y
-	move_and_slide(left_direction, FLOOR_NORMAL)
+func move_left(intensity = 1.0) -> void:
+	velocity.x = -speed.x * intensity
+	
+func update_health_label() -> void:
+	get_node("HealthLabel").text = str(health.num) + '/' + str(health.denom)
