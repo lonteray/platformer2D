@@ -3,4 +3,5 @@ temp/
 .mono/
 *.import
 *.png
+.fonts/
 
