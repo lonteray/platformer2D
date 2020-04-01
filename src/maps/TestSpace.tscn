@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/texture.png" type="Texture" id=2]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/background.png" type="Texture" id=4]
+[ext_resource path="res://assets/fight_cloud.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
@@ -28,12 +29,18 @@ points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 
 [node name="TestSpace" type="Node2D"]
 
+[node name="fight_cloud" type="Sprite" parent="."]
+visible = false
+position = Vector2( 480.75, 180.5 )
+scale = Vector2( 0.216667, 0.199341 )
+texture = ExtResource( 5 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
 
 [node name="background" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 507, 309 )
-scale = Vector2( 1.46957, 1.47831 )
+position = Vector2( 507, 304 )
+scale = Vector2( 1.52022, 1.60087 )
 texture = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]

@@ -36,15 +36,14 @@ func check_on_enemy() -> void:
 
 func fight(enemy: KinematicBody2D) -> void:
 	print("Fight!")
-	#is_on_fight = true
-	#enemy.is_on_fight = true
-	set_physics_process(false)
-	enemy.set_physics_process(false)
 	fight_coroutine(enemy)
 	print("Uno")
 	
 		
 func fight_coroutine(enemy: KinematicBody2D) -> void:
+	setActive(false)
+	set_fight_cloud_active(true, enemy.position)
+	enemy.setActive(false)
 	yield(get_tree().create_timer(1.0), "timeout")
 	print("Dos")
 	if !enemy:
@@ -54,11 +53,20 @@ func fight_coroutine(enemy: KinematicBody2D) -> void:
 		health.add(enemy.health)
 		update_health_label()
 		enemy.die()
-		move_and_slide(Vector2.ZERO) #
-		set_physics_process(true)
+		setActive(true)
 	else:
 		enemy.health.add(health)
 		enemy.update_health_label()
 		die()
-		#enemy.is_on_fight = false
-		enemy.set_physics_process(true)
+		enemy.setActive(true)
+	set_fight_cloud_active(false)
+		
+func set_fight_cloud_active(state: bool, enemy_pos = Vector2.ZERO) -> void:
+	var cloud = get_tree().get_root().get_node("TestSpace").find_node("fight_cloud")
+	cloud.visible = state
+	if state:
+		var cloud_pos: = Vector2.ZERO
+		cloud_pos.x = (position.x + enemy_pos.x) / 2
+		cloud_pos.y = position.y
+		cloud.position = cloud_pos + Constants.FIGHT_CLOUD_OFFSET
+	
