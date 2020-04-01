@@ -9,6 +9,7 @@ func _ready():
 	update_health_label()
 
 func _physics_process(delta: float) -> void:
+	check_on_enemy()
 	check_input_on_movement()
 
 func check_input_on_movement() -> void:
@@ -26,6 +27,38 @@ func check_input_on_movement() -> void:
 
 func jump(strength: float) -> void:
 	velocity.y = -speed.y * strength
+	
+func check_on_enemy() -> void:
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.collision_layer == Constants.ENEMY_LEVEL:
+			fight(collision.collider)
 
-
-
+func fight(enemy: KinematicBody2D) -> void:
+	print("Fight!")
+	#is_on_fight = true
+	#enemy.is_on_fight = true
+	set_physics_process(false)
+	enemy.set_physics_process(false)
+	fight_coroutine(enemy)
+	print("Uno")
+	
+		
+func fight_coroutine(enemy: KinematicBody2D) -> void:
+	yield(get_tree().create_timer(1.0), "timeout")
+	print("Dos")
+	if !enemy:
+		print("Enemy is empty")
+	var result: = health.compare(enemy.health)
+	if result >= 0:
+		health.add(enemy.health)
+		update_health_label()
+		enemy.die()
+		move_and_slide(Vector2.ZERO) #
+		set_physics_process(true)
+	else:
+		enemy.health.add(health)
+		enemy.update_health_label()
+		die()
+		#enemy.is_on_fight = false
+		enemy.set_physics_process(true)

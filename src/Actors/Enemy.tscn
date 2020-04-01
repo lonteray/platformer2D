@@ -12,7 +12,6 @@ scale = Vector2( 0.68, 0.68 )
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 1 )
-speed = Vector2( 300, 1000 )
 
 [node name="enemy" type="Sprite" parent="."]
 position = Vector2( 0, -75 )
