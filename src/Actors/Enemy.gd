@@ -22,6 +22,12 @@ func _physics_process(delta: float) -> void:
 			
 func check_direction() -> void:
 	if is_on_wall():
+		for i in get_slide_count():
+			var collision = get_slide_collision(i)
+			if collision.collider.collision_layer == Constants.PLAYER_LEVEL:
+				print("Enemy met player")
+				collision.collider.fight(self)
+				return
 		#switch direction
 		if is_right_direction:
 			is_right_direction = false

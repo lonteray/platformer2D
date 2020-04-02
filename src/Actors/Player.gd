@@ -33,6 +33,7 @@ func check_on_enemy() -> void:
 		var collision = get_slide_collision(i)
 		if collision.collider.collision_layer == Constants.ENEMY_LEVEL:
 			fight(collision.collider)
+			break
 
 func fight(enemy: KinematicBody2D) -> void:
 	print("Fight!")
