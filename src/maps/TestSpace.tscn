@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/texture.png" type="Texture" id=2]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/background.png" type="Texture" id=4]
-[ext_resource path="res://assets/fight_cloud.png" type="Texture" id=5]
+[ext_resource path="res://assets/fight_cloud/fight_cloud_0.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
@@ -31,8 +31,8 @@ points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 
 [node name="fight_cloud" type="Sprite" parent="."]
 visible = false
-position = Vector2( 480.75, 180.5 )
-scale = Vector2( 0.216667, 0.199341 )
+position = Vector2( 496.533, 176.5 )
+scale = Vector2( 0.296785, 0.3225 )
 texture = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
