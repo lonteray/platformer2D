@@ -18,12 +18,12 @@ func compare(other: Fraction) -> int:
 		
 func add(other: Fraction) -> void:
 	var gcd = calc_gcd(denom, other.denom)
+	print("gcd = " + str(gcd))
 	var final_denom = (denom * other.denom) / gcd
-	var final_num = num * (final_denom / denom) 
-	+ other.num * (final_denom / other.denom)
-	
+	var final_num = num * (final_denom / denom) + other.num * (final_denom / other.denom)
 	num = final_num
 	denom = final_denom
+	lowest() # convert final fraction to its simplest form
 	
 func add_value(value: float) -> void:
 	num += value * denom
@@ -39,5 +39,10 @@ func substract_value(value: float) -> void:
 func calc_gcd(a: int, b: int) -> int:
 	if a == 0:
 		return b
-	return calc_gcd(b % a, b)
+	return calc_gcd(b % a, a)
+
+func lowest() -> void:
+	var common_factor: = calc_gcd(num, denom)
+	num /= common_factor
+	denom /= common_factor
  

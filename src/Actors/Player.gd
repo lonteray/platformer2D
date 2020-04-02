@@ -1,5 +1,7 @@
 extends Actor
 
+class_name Player
+
 export var init_num = 3
 export var init_denom = 3
 
@@ -38,28 +40,28 @@ func check_on_enemy() -> void:
 			fight(collision.collider)
 			break
 
-func fight(enemy: KinematicBody2D) -> void:
+func fight(enemy: Enemy) -> void:
 	print("Fight!")
 	fight_coroutine(enemy)
 	print("Uno")
 
-func fight_coroutine(enemy: KinematicBody2D) -> void:
-	setActive(false)
+func fight_coroutine(enemy: Enemy) -> void:
+	set_active(false)
 	cloud.set_active(true, position, enemy.position)
-	enemy.setActive(false)
+	enemy.set_active(false)
 	yield(get_tree().create_timer(1.0), "timeout")
 	print("Dos")
 	if !enemy:
 		print("Enemy is empty")
 	var result: = health.compare(enemy.health)
 	if result >= 0:
-		health.add(enemy.health)
-		update_health_label()
-		enemy.die()
-		setActive(true)
+		end_of_fight(self, enemy)
 	else:
-		enemy.health.add(health)
-		enemy.update_health_label()
-		die()
-		enemy.setActive(true)
+		end_of_fight(enemy, self)
 	cloud.set_active(false)
+
+func end_of_fight(winner: Actor, looser: Actor) -> void:
+	winner.health.add(looser.health)
+	winner.update_health_label()
+	looser.die()
+	winner.set_active(true)

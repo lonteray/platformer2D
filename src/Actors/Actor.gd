@@ -31,7 +31,7 @@ func die() -> void:
 	get_node("CollisionShape2D").disabled = true
 	queue_free()
 
-func setActive(state: bool) -> void:
+func set_active(state: bool) -> void:
 	set_physics_process(state)
 	visible = state
 	if state:

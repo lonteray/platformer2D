@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "Fraction",
 "language": "GDScript",
 "path": "res://src/abstract/Fraction.gd"
+}, {
+"base": "Actor",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/Actors/Player.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
 "Constants": "",
 "Enemy": "",
 "FightCloud": "",
-"Fraction": ""
+"Fraction": "",
+"Player": ""
 }
 
 [application]
