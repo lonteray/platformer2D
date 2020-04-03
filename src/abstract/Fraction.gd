@@ -5,6 +5,10 @@ export var num: = 0
 export var denom: = 1
 const epsilon = 0.00000001
 
+func init(inum: int, idenom: int) -> void:
+	num = inum
+	denom = idenom
+
 func calc_value() -> float:
 	return float(num) / denom
 	

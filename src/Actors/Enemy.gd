@@ -2,14 +2,10 @@ extends Actor
 
 class_name Enemy
 
-export var init_num = 1
-export var init_denom = 3
-
 var is_right_direction: = true
 
 func _ready():
-	health.num = init_num
-	health.denom = init_denom
+	health.init(Constants.ENEMY_HEALTH_NUM, Constants.ENEMY_HEALTH_DENOM)
 	update_health_label()
 
 func _physics_process(delta: float) -> void:

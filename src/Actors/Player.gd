@@ -2,20 +2,19 @@ extends Actor
 
 class_name Player
 
-export var init_num = 3
-export var init_denom = 3
-
 var cloud = null
-var gl_health_label = null
+var ui_component = null
 
 func _ready():
-	health.num = init_num
-	health.denom = init_denom
-	gl_health_label = get_tree().get_current_scene().find_node("g_healthLabel")
+	health.init(Constants.PLAYER_HEALTH_NUM, Constants.PLAYER_HEALTH_DENOM)
+	bind_scene_objects()
 	update_health_label()
 	update_global_label()
-	cloud = get_tree().get_current_scene().find_node("fight_cloud")
 	lifetime_coroutine()
+
+func bind_scene_objects() -> void:
+	ui_component = get_tree().get_current_scene().find_node("DisplayCanvas")
+	cloud = get_tree().get_current_scene().find_node("fight_cloud")
 
 func _physics_process(delta: float) -> void:
 	check_on_enemy()
@@ -85,4 +84,4 @@ func lifetime_coroutine() -> void:
 
 func update_global_label() -> void:
 	var text = str(health.num) + '/' + str(health.denom)
-	gl_health_label.text = text
+	ui_component.update_label(health)
