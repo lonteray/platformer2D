@@ -9,7 +9,8 @@ radius = 47.0588
 height = 20.5882
 
 [sub_resource type="DynamicFont" id=2]
-size = 30
+size = 43
+use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 3 )
 
@@ -33,20 +34,16 @@ rect = Rect2( -57, -90, 108, 90 )
 process_parent = true
 physics_process_parent = true
 
-[node name="HealthLabel" type="RichTextLabel" parent="."]
-margin_left = -20.5882
-margin_top = -189.706
-margin_right = 88.4118
-margin_bottom = -159.706
-rect_scale = Vector2( 0.999999, 1.11764 )
-size_flags_horizontal = 5
-size_flags_vertical = 5
-custom_fonts/normal_font = SubResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-visible_characters = 251
+[node name="HealthLabel" type="Label" parent="."]
+margin_left = -32.353
+margin_top = -192.647
+margin_right = 27.647
+margin_bottom = -144.647
+rect_scale = Vector2( 1.11764, 0.882356 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0/0"
-scroll_active = false
+align = 1
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
