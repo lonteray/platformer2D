@@ -25,7 +25,9 @@ func move_left(intensity = 1.0) -> void:
 	velocity.x = -speed.x * intensity
 	
 func update_health_label() -> void:
-	get_node("HealthLabel").text = str(health.num) + '/' + str(health.denom)
+	var text: = str(health.num) + '/' + str(health.denom)
+	get_node("HealthLabel").text = text
+		
 
 func die() -> void:
 	get_node("CollisionShape2D").disabled = true

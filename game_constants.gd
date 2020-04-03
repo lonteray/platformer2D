@@ -10,3 +10,5 @@ const WORLD_LEVEL = 4
 
 const FIGHT_CLOUD_OFFSET = Vector2(0.0, -70.0)
 
+const PLAYER_LIFETIME = 10.0
+

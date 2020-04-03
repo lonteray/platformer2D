@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/texture.png" type="Texture" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://assets/background.png" type="Texture" id=4]
 [ext_resource path="res://assets/fight_cloud/fight_cloud_0.png" type="Texture" id=5]
 [ext_resource path="res://src/abstract/fightCloud.gd" type="Script" id=6]
+[ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=3]
+size = 53
+use_filter = true
+font_data = ExtResource( 7 )
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
@@ -29,6 +35,21 @@ points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 0/z_index = 0
 
 [node name="TestSpace" type="Node2D"]
+
+[node name="DisplayCanvas" type="CanvasLayer" parent="."]
+
+[node name="g_healthLabel" type="Label" parent="DisplayCanvas"]
+margin_left = 859.0
+margin_top = 68.0
+margin_right = 995.0
+margin_bottom = 180.0
+rect_scale = Vector2( 1.18665, 0.887648 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0/0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="fight_cloud" type="Sprite" parent="."]
 visible = false

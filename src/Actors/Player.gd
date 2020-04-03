@@ -6,12 +6,16 @@ export var init_num = 3
 export var init_denom = 3
 
 var cloud = null
+var gl_health_label = null
 
 func _ready():
 	health.num = init_num
 	health.denom = init_denom
+	gl_health_label = get_tree().get_root().get_node("TestSpace").find_node("g_healthLabel")
 	update_health_label()
+	update_global_label()
 	cloud = get_tree().get_root().get_node("TestSpace").find_node("fight_cloud")
+	lifetime_coroutine()
 
 func _physics_process(delta: float) -> void:
 	check_on_enemy()
@@ -56,6 +60,7 @@ func fight_coroutine(enemy: Enemy) -> void:
 	var result: = health.compare(enemy.health)
 	if result >= 0:
 		end_of_fight(self, enemy)
+		update_global_label()
 	else:
 		end_of_fight(enemy, self)
 	cloud.set_active(false)
@@ -65,3 +70,19 @@ func end_of_fight(winner: Actor, looser: Actor) -> void:
 	winner.update_health_label()
 	looser.die()
 	winner.set_active(true)
+
+func lifetime_coroutine() -> void:
+	while true:
+		var step = Constants.PLAYER_LIFETIME / health.denom
+		yield(get_tree().create_timer(step), "timeout")
+		if is_physics_processing():
+			health.num -= 1
+		update_global_label()
+		if health.num <= 0:
+			die()
+			break
+		update_health_label()
+
+func update_global_label() -> void:
+	var text = str(health.num) + '/' + str(health.denom)
+	gl_health_label.text = text

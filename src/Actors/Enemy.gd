@@ -2,8 +2,8 @@ extends Actor
 
 class_name Enemy
 
-export var init_num = 3
-export var init_denom = 4
+export var init_num = 1
+export var init_denom = 3
 
 var is_right_direction: = true
 

@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemy.png" type="Texture" id=2]
+[ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 47.0588
 height = 20.5882
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+use_filter = true
+font_data = ExtResource( 3 )
 
 [node name="Enemy" type="KinematicBody2D"]
 scale = Vector2( 0.68, 0.68 )
@@ -28,13 +34,17 @@ process_parent = true
 physics_process_parent = true
 
 [node name="HealthLabel" type="RichTextLabel" parent="."]
-margin_left = -57.3529
-margin_top = -194.118
-margin_right = 51.6471
-margin_bottom = -154.118
+margin_left = -20.5882
+margin_top = -189.706
+margin_right = 88.4118
+margin_bottom = -159.706
+rect_scale = Vector2( 0.999999, 1.11764 )
+size_flags_horizontal = 5
+size_flags_vertical = 5
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 visible_characters = 251
-text = "Foooo"
+text = "0/0"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false,
