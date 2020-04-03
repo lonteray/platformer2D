@@ -9,7 +9,7 @@ func _ready():
 	health.init(Constants.PLAYER_HEALTH_NUM, Constants.PLAYER_HEALTH_DENOM)
 	bind_scene_objects()
 	update_health_label()
-	update_global_label()
+	ui_component.update_label(health.num, health.denom)
 	lifetime_coroutine()
 
 func bind_scene_objects() -> void:
@@ -46,22 +46,21 @@ func check_on_enemy() -> void:
 func fight(enemy: Enemy) -> void:
 	print("Fight!")
 	fight_coroutine(enemy)
-	print("Uno")
 
 func fight_coroutine(enemy: Enemy) -> void:
 	set_active(false)
 	cloud.set_active(true, position, enemy.position)
 	enemy.set_active(false)
 	yield(get_tree().create_timer(1.0), "timeout")
-	print("Dos")
 	if !enemy:
 		print("Enemy is empty")
 	var result: = health.compare(enemy.health)
 	if result >= 0:
 		end_of_fight(self, enemy)
-		update_global_label()
+		ui_component.update_label(health.num, health.denom)
 	else:
 		end_of_fight(enemy, self)
+		ui_component.update_label(0, 1)
 	cloud.set_active(false)
 
 func end_of_fight(winner: Actor, looser: Actor) -> void:
@@ -72,16 +71,37 @@ func end_of_fight(winner: Actor, looser: Actor) -> void:
 
 func lifetime_coroutine() -> void:
 	while true:
-		var step = Constants.PLAYER_LIFETIME / health.denom
-		yield(get_tree().create_timer(step), "timeout")
-		if is_physics_processing():
-			health.num -= 1
-		update_global_label()
+		var outer: = calc_health_reduce_level()
+		var inner: = 0.0
+		var progress: = 0.0
+		var last_denom: = health.denom
+		var was_fight: = false
+		while inner < outer:
+			yield(get_tree().create_timer(Constants.PLAYER_HEALTH_INNER_STEP), "timeout")
+			if is_physics_processing():
+				if was_fight:
+					if last_denom != health.denom:
+						outer = calc_health_reduce_level()
+						inner = 0.0
+						last_denom = health.denom
+					was_fight = false
+				else:
+					progress = float(outer - inner) / outer
+					ui_component.update_status(progress)
+					inner += Constants.PLAYER_HEALTH_INNER_STEP
+			elif self.is_queued_for_deletion():
+				ui_component.update_status(0.0)
+				print("Coroutine stopped")
+				return
+			else:
+				was_fight = true
+		health.num -= 1
+		print("Mathumba")
+		ui_component.update_label(health.num, health.denom)
 		if health.num <= 0:
 			die()
-			break
+			return
 		update_health_label()
 
-func update_global_label() -> void:
-	var text = str(health.num) + '/' + str(health.denom)
-	ui_component.update_label(health)
+func calc_health_reduce_level() -> float:
+	return Constants.PLAYER_LIFETIME / health.denom

@@ -26,9 +26,9 @@ func add(other: Fraction) -> void:
 	var final_num = num * (final_denom / denom) + other.num * (final_denom / other.denom)
 	num = final_num
 	denom = final_denom
-	#lowest() # convert final fraction to its simplest form
+	lowest() # convert final fraction to its simplest form
 	
-func add_value(value: float) -> void:
+func add_value(value: int) -> void:
 	num += value * denom
 	
 func substract(other: Fraction) -> void:
