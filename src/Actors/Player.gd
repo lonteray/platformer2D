@@ -11,10 +11,10 @@ var gl_health_label = null
 func _ready():
 	health.num = init_num
 	health.denom = init_denom
-	gl_health_label = get_tree().get_root().get_node("TestSpace").find_node("g_healthLabel")
+	gl_health_label = get_tree().get_current_scene().find_node("g_healthLabel")
 	update_health_label()
 	update_global_label()
-	cloud = get_tree().get_root().get_node("TestSpace").find_node("fight_cloud")
+	cloud = get_tree().get_current_scene().find_node("fight_cloud")
 	lifetime_coroutine()
 
 func _physics_process(delta: float) -> void:
