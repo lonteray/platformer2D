@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "UIDisplayHealth",
 "language": "GDScript",
-"path": "res://src/maps/UIDisplayHealth.gd"
+"path": "res://src/abstract/UIDisplayHealth.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
