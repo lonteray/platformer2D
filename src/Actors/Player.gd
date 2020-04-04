@@ -4,6 +4,7 @@ class_name Player
 
 var cloud = null
 var ui_component = null
+var is_alive: = true
 
 func _ready():
 	health.init(Constants.PLAYER_HEALTH_NUM, Constants.PLAYER_HEALTH_DENOM)
@@ -47,6 +48,14 @@ func fight(enemy: Enemy) -> void:
 	print("Fight!")
 	fight_coroutine(enemy)
 
+# override
+func will_die() -> void:
+	print("Player should die")
+	get_node("CollisionShape2D").disabled = true
+	ui_component.update_status(0.0)
+	ui_component.game_over()
+	is_alive = false
+
 func fight_coroutine(enemy: Enemy) -> void:
 	set_active(false)
 	cloud.set_active(true, position, enemy.position)
@@ -66,7 +75,7 @@ func fight_coroutine(enemy: Enemy) -> void:
 func end_of_fight(winner: Actor, looser: Actor) -> void:
 	winner.health.add(looser.health)
 	winner.update_health_label()
-	looser.die()
+	looser.will_die()
 	winner.set_active(true)
 
 func lifetime_coroutine() -> void:
@@ -78,7 +87,9 @@ func lifetime_coroutine() -> void:
 		var was_fight: = false
 		while inner < outer:
 			yield(get_tree().create_timer(Constants.PLAYER_HEALTH_INNER_STEP), "timeout")
-			print("Fooooo")
+			if !is_alive:  
+				die()
+				return
 			if is_physics_processing():
 				if was_fight:
 					if last_denom != health.denom:
@@ -92,18 +103,12 @@ func lifetime_coroutine() -> void:
 					inner += Constants.PLAYER_HEALTH_INNER_STEP
 			else:
 				was_fight = true
-			if !is_alive:   # not work
-				ui_component.update_status(0.0)
-				print("Coroutine stopped")
-				ui_component.game_over()
-				return
-			print("Hello")
 		health.num -= 1
 		print("Mathumba")
 		ui_component.update_label(health.num, health.denom)
 		if health.num <= 0:
+			will_die()
 			die()
-			ui_component.game_over()
 			return
 		update_health_label()
 

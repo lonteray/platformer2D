@@ -7,7 +7,6 @@ export var speed: = Vector2(300.0, 1000.0)
 export var gravity: = 4000.0
 
 var velocity: = Vector2.ZERO
-var is_alive: = true
 
 var health: = Fraction.new()
 var right_direction: = Vector2(speed.x, 0.0)
@@ -27,13 +26,15 @@ func move_left(intensity = 1.0) -> void:
 func update_health_label() -> void:
 	var text: = str(health.num) + '/' + str(health.denom)
 	get_node("HealthLabel").text = text
-		
 
 func die() -> void:
-	get_node("CollisionShape2D").disabled = true
-	is_alive = false
 	print("Thats all")
 	queue_free()
+
+# mark that actor should die
+func will_die() -> void:
+	get_node("CollisionShape2D").disabled = true
+	die()
 
 func set_active(state: bool) -> void:
 	set_physics_process(state)
