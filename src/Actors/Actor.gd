@@ -7,7 +7,7 @@ export var speed: = Vector2(300.0, 1000.0)
 export var gravity: = 4000.0
 
 var velocity: = Vector2.ZERO
-#var is_on_fight: = false
+var is_alive: = true
 
 var health: = Fraction.new()
 var right_direction: = Vector2(speed.x, 0.0)
@@ -31,6 +31,8 @@ func update_health_label() -> void:
 
 func die() -> void:
 	get_node("CollisionShape2D").disabled = true
+	is_alive = false
+	print("Thats all")
 	queue_free()
 
 func set_active(state: bool) -> void:

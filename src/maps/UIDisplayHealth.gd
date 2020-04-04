@@ -4,6 +4,7 @@ class_name UIDisplayHealth
 
 var progress: = 0
 var time: = 0.0
+var is_game_over: = false
 
 const TIMER_STEP: = 1.0
 
@@ -19,7 +20,10 @@ func update_status(value: float) -> void:
 	get_node("HealthStatus").value = progress
 
 func timer_coroutine() -> void:
-	while true:
-		yield(get_tree().create_timer(TIMER_STEP), "timeout")
+	while !is_game_over:
+		get_node("Timer").text = str(time) + ".0"
 		time += TIMER_STEP
-		get_node("TestTimer").text = str(time)
+		yield(get_tree().create_timer(TIMER_STEP), "timeout")
+
+func game_over() -> void:
+	is_game_over = true

@@ -78,6 +78,7 @@ func lifetime_coroutine() -> void:
 		var was_fight: = false
 		while inner < outer:
 			yield(get_tree().create_timer(Constants.PLAYER_HEALTH_INNER_STEP), "timeout")
+			print("Fooooo")
 			if is_physics_processing():
 				if was_fight:
 					if last_denom != health.denom:
@@ -89,17 +90,20 @@ func lifetime_coroutine() -> void:
 					progress = float(outer - inner) / outer
 					ui_component.update_status(progress)
 					inner += Constants.PLAYER_HEALTH_INNER_STEP
-			elif self.is_queued_for_deletion():
-				ui_component.update_status(0.0)
-				print("Coroutine stopped")
-				return
 			else:
 				was_fight = true
+			if !is_alive:   # not work
+				ui_component.update_status(0.0)
+				print("Coroutine stopped")
+				ui_component.game_over()
+				return
+			print("Hello")
 		health.num -= 1
 		print("Mathumba")
 		ui_component.update_label(health.num, health.denom)
 		if health.num <= 0:
 			die()
+			ui_component.game_over()
 			return
 		update_health_label()
 
