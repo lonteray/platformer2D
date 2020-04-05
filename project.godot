@@ -69,6 +69,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Platformer"
+run/main_scene="res://src/maps/TestSpace.tscn"
 config/icon="res://icon.png"
 
 [input]

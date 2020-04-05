@@ -25,3 +25,4 @@ func _on_LocationArea_body_exited(body: KinematicBody2D):
 	if body.collision_layer == Constants.PLAYER_LEVEL:
 		print("Player exited on area")
 		is_area_empty = true
+		factory.instantiate()

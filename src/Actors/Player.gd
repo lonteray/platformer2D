@@ -104,7 +104,6 @@ func lifetime_coroutine() -> void:
 			else:
 				was_fight = true
 		health.num -= 1
-		print("Mathumba")
 		ui_component.update_label(health.num, health.denom)
 		if health.num <= 0:
 			will_die()
