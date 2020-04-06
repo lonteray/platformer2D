@@ -19,3 +19,6 @@ const PLAYER_HEALTH_INNER_STEP = 0.1
 #for enemy
 const ENEMY_HEALTH_NUM = 3
 const ENEMY_HEALTH_DENOM = 5
+
+#for area
+const ENEMY_RESPAWN_TIME = 5.0

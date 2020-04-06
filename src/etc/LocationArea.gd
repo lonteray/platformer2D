@@ -25,4 +25,13 @@ func _on_LocationArea_body_exited(body: KinematicBody2D):
 	if body.collision_layer == Constants.PLAYER_LEVEL:
 		print("Player exited on area")
 		is_area_empty = true
+		enemy_respawn_coroutine()
+
+func enemy_respawn_coroutine() -> void:
+	var thick: = 0.1
+	var time: = 0.0
+	while is_area_empty and time < Constants.ENEMY_RESPAWN_TIME:
+		yield(get_tree().create_timer(thick), "timeout")
+		time += thick
+	if is_area_empty:
 		factory.instantiate()
