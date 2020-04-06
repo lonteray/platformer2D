@@ -28,7 +28,6 @@ func update_health_label() -> void:
 	get_node("HealthLabel").text = text
 
 func die() -> void:
-	print("Thats all")
 	queue_free()
 
 # mark that actor should die
