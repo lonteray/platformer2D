@@ -4,4 +4,7 @@ temp/
 *.import
 *.png
 .fonts/
+addons/
+platform2d-example/
+LICENSE
 

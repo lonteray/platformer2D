@@ -72,6 +72,10 @@ config/name="Platformer"
 run/main_scene="res://src/maps/TestSpace.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "platform2d" )
+
 [input]
 
 move_left={
