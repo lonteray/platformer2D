@@ -28,14 +28,14 @@ func add(other: Fraction) -> void:
 	denom = final_denom
 	lowest() # convert final fraction to its simplest form
 	
-func add_value(value: int) -> void:
-	num += value * denom
+func add_value(value: float) -> void:
+	num += int(value * denom)
 	
 func substract(other: Fraction) -> void:
 	other.num *= -1
 	add(other)
 	
-func substract_value(value: int) -> void:
+func substract_value(value: float) -> void:
 	add_value(-value)
 	
 # calculation of greatest common divisor

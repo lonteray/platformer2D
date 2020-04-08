@@ -22,3 +22,6 @@ const ENEMY_HEALTH_DENOM = 5
 
 #for area
 const ENEMY_RESPAWN_TIME = 5.0
+
+#for player tools
+const CAMP_HEALING_REFRESH_TIME = 4.0
