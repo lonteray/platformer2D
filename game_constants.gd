@@ -25,3 +25,4 @@ const ENEMY_RESPAWN_TIME = 5.0
 
 #for player tools
 const CAMP_HEALING_REFRESH_TIME = 4.0
+const QUEST_CHEST_REFRESH_TIME = 5.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/platform2d/textures/thick_platform_default.tres" type="Resource" id=1]
 [ext_resource path="res://addons/platform2d/thick_platform.gd" type="Script" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://assets/camp.png" type="Texture" id=11]
 [ext_resource path="res://assets/healing_sign.png" type="Texture" id=12]
 [ext_resource path="res://src/maps/Camp.gd" type="Script" id=13]
+[ext_resource path="res://assets/chest.png" type="Texture" id=14]
+[ext_resource path="res://src/maps/QuestChest.gd" type="Script" id=15]
 
 [sub_resource type="Curve2D" id=6]
 bake_interval = 50.0
@@ -39,7 +41,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 111, 87 )
+extents = Vector2( 57, 35 )
 
 [node name="Island" type="Node2D"]
 
@@ -149,5 +151,22 @@ texture = ExtResource( 11 )
 position = Vector2( 6905, 336 )
 scale = Vector2( 1.35999, 1.36 )
 texture = ExtResource( 12 )
+
+[node name="QuestChest" type="Area2D" parent="."]
+position = Vector2( 1510, 224 )
+collision_layer = 0
+script = ExtResource( 15 )
+trigger_message = "Its a quest chest. Press q key to play the quest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestChest"]
+position = Vector2( 6905, 515 )
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="QuestChest"]
+position = Vector2( 6905, 515 )
+scale = Vector2( 0.489283, 0.478969 )
+texture = ExtResource( 14 )
 [connection signal="body_entered" from="Camp" to="Camp" method="_on_Camp_body_entered"]
 [connection signal="body_exited" from="Camp" to="Camp" method="_on_Camp_body_exited"]
+[connection signal="body_entered" from="QuestChest" to="QuestChest" method="_on_QuestChest_body_entered"]
+[connection signal="body_exited" from="QuestChest" to="QuestChest" method="_on_QuestChest_body_exited"]

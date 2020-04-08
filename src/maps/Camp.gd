@@ -4,8 +4,6 @@ class_name Camp
 
 export var adding_health: = 0.0
 
-var is_active: = true
-
 func _on_Camp_body_entered(body: KinematicBody2D):
 	if is_active:
 		switch_message(true)

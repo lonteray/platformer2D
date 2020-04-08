@@ -7,6 +7,7 @@ export var trigger_message: String
 var message_box
 var player: Actor
 var is_player_here: = false
+var is_active: = true
 
 func _ready():
 	bind_scene_objects()
