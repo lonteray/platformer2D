@@ -35,7 +35,7 @@ func substract(other: Fraction) -> void:
 	other.num *= -1
 	add(other)
 	
-func substract_value(value: float) -> void:
+func substract_value(value: int) -> void:
 	add_value(-value)
 	
 # calculation of greatest common divisor

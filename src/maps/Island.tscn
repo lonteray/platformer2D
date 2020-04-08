@@ -39,7 +39,19 @@ _data = {
 
 [node name="fight_cloud" parent="." instance=ExtResource( 10 )]
 
+[node name="BeachLocation" parent="." instance=ExtResource( 9 )]
+modulate = Color( 0.513726, 0.145098, 0.380392, 1 )
+position = Vector2( 7500, 336 )
+scale = Vector2( 2.92, 1.8 )
+
+[node name="ForestLocation" parent="." instance=ExtResource( 9 )]
+modulate = Color( 0.376471, 0.905882, 0.482353, 1 )
+position = Vector2( 1272, 336 )
+scale = Vector2( 1.32, 1.4 )
+speed_factor = 0.65
+
 [node name="MountainLocation" parent="." instance=ExtResource( 9 )]
+modulate = Color( 0.65098, 0.678431, 0.929412, 1 )
 position = Vector2( 3945, -185 )
 scale = Vector2( 3.41852, 3.18438 )
 enemies_positions = PoolVector2Array( 2766, -185, 4642, -350 )

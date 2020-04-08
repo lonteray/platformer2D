@@ -3,7 +3,7 @@ extends CanvasLayer
 class_name UIDisplayHealth
 
 var progress: = 0
-var time: = 0
+var time: = 0.0
 var is_game_over: = false
 
 const MINUTE: = 60

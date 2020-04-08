@@ -39,4 +39,4 @@ func set_active(state: bool) -> void:
 	set_physics_process(state)
 	visible = state
 	if state:
-		move_and_slide(Vector2.ZERO)
+		velocity = move_and_slide(Vector2.ZERO)

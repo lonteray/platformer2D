@@ -27,31 +27,30 @@ func instantiate() -> void:
 		for position in positions:
 			set_node(position, count)
 			count += 1
-		print("count of instances = " + str(instances.size()))
-		display_instances()
+		#print("count of instances = " + str(instances.size()))
+		#display_instances()
 	else:
-		var count: = 0
-		print("count of instances = " + str(instances.size()))
-		print("Instances before checking")
-		display_instances()
+		#print("count of instances = " + str(instances.size()))
+		#print("Instances before checking")
+		#display_instances()
 		var index: = 0
 		for i in range(instances.size()):
 			if not is_instance_valid(instances[i]):
-				print("Enemy" + str(i) + " was died")
+				#print("Enemy" + str(i) + " was died")
 				instances.erase(instances[i])
 				set_node(positions[index], i)
 			index += 1
 
 func set_node(position: Vector2, index: int) -> void:
-	print("Before insertion")
-	display_instances()
+	#print("Before insertion")
+	#display_instances()
 	instance = instance_scene.instance()
 	target_scene.call_deferred("add_child", instance)
 	instance.set_position(position)
 	instances.insert(index, instance)
-	print("Newbie instance now has a position " + str(instances.find(instance)))
-	print("After insertion")
-	display_instances()
+	#print("Newbie instance now has a position " + str(instances.find(instance)))
+	#print("After insertion")
+	#display_instances()
 
 func display_instances() -> void:
 #	var count = 0 
