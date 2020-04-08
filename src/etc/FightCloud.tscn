@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/abstract/fightCloud.gd" type="Script" id=1]
+[ext_resource path="res://assets/fight_cloud/fight_cloud_0.png" type="Texture" id=2]
+
+[node name="fight_cloud" type="Sprite"]
+visible = false
+position = Vector2( 496.533, 176.5 )
+scale = Vector2( 0.296785, 0.3225 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

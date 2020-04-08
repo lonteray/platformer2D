@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/platform2d/textures/thick_platform_default.tres" type="Resource" id=1]
 [ext_resource path="res://addons/platform2d/thick_platform.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://addons/platform2d/textures/beach_thick_platform.tres" type="Resource" id=6]
 [ext_resource path="res://src/ui_components/DisplayCanvas.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/ui_components/CanvasLayer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/etc/LocationArea.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/etc/FightCloud.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
 bake_interval = 50.0
@@ -35,16 +37,25 @@ _data = {
 
 [node name="Island" type="Node2D"]
 
+[node name="fight_cloud" parent="." instance=ExtResource( 10 )]
+
+[node name="MountainLocation" parent="." instance=ExtResource( 9 )]
+position = Vector2( 3945, -185 )
+scale = Vector2( 3.41852, 3.18438 )
+enemies_positions = PoolVector2Array( 2766, -185, 4642, -350 )
+
 [node name="DisplayCanvas" parent="." instance=ExtResource( 7 )]
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 8 )]
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 8683, 273 )
+position = Vector2( 861, 389 )
 
 [node name="BorderMountain" type="StaticBody2D" parent="."]
 position = Vector2( 203, 835 )
 scale = Vector2( 0.72, 0.72 )
+collision_layer = 8
+collision_mask = 0
 script = ExtResource( 2 )
 MovingPlatform = false
 Curve = SubResource( 1 )
@@ -60,6 +71,8 @@ format = 1
 
 [node name="ForestGround" type="StaticBody2D" parent="."]
 position = Vector2( 1472, 835 )
+collision_layer = 8
+collision_mask = 0
 script = ExtResource( 2 )
 MovingPlatform = false
 Curve = SubResource( 2 )
@@ -72,6 +85,8 @@ polygon = PoolVector2Array( -1095.89, 274.291, -1078.33, 227.466, -1065.21, 179.
 
 [node name="MiddleMountain" type="StaticBody2D" parent="."]
 position = Vector2( 2766, 625 )
+collision_layer = 8
+collision_mask = 0
 script = ExtResource( 2 )
 MovingPlatform = false
 Curve = SubResource( 3 )
@@ -84,6 +99,8 @@ polygon = PoolVector2Array( -752.463, 519.723, -746.921, 470.04, -725.273, 372.4
 
 [node name="Beach" type="StaticBody2D" parent="."]
 position = Vector2( 6905, 835 )
+collision_layer = 8
+collision_mask = 0
 script = ExtResource( 2 )
 MovingPlatform = false
 Curve = SubResource( 4 )
