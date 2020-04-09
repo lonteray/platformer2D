@@ -6,6 +6,6 @@
 layer = -100
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 507, 304 )
-scale = Vector2( 1.52022, 1.60087 )
+position = Vector2( 689, 395 )
+scale = Vector2( 2.16022, 2.36087 )
 texture = ExtResource( 1 )

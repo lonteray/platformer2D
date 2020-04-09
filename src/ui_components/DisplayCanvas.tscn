@@ -25,10 +25,10 @@ font_data = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="HealthLabel" type="Label" parent="."]
-margin_left = 859.0
-margin_top = 79.0
-margin_right = 995.0
-margin_bottom = 191.0
+margin_left = 1119.0
+margin_top = 92.0
+margin_right = 1255.0
+margin_bottom = 204.0
 rect_scale = Vector2( 1.18665, 0.887648 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -39,10 +39,10 @@ __meta__ = {
 }
 
 [node name="HealthStatus" type="TextureProgress" parent="."]
-margin_left = 809.0
-margin_top = 36.0
-margin_right = 1128.0
-margin_bottom = 68.0
+margin_left = 1119.0
+margin_top = 50.0
+margin_right = 1438.0
+margin_bottom = 82.0
 rect_scale = Vector2( 0.64, 0.68 )
 max_value = 1000.0
 value = 1000.0
@@ -54,10 +54,10 @@ __meta__ = {
 }
 
 [node name="Timer" type="Label" parent="."]
-margin_left = 136.0
-margin_top = 50.0
-margin_right = 176.0
-margin_bottom = 109.0
+margin_left = 186.0
+margin_top = 72.0
+margin_right = 226.0
+margin_bottom = 131.0
 rect_scale = Vector2( 1.5023, 1.20897 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -67,14 +67,14 @@ __meta__ = {
 }
 
 [node name="TimerIcon" type="Sprite" parent="."]
-position = Vector2( 80, 79 )
+position = Vector2( 123, 92 )
 scale = Vector2( 0.305243, 0.305243 )
 texture = ExtResource( 5 )
 
 [node name="MessageBox" type="Polygon2D" parent="."]
 visible = false
-position = Vector2( 222, 480 )
-scale = Vector2( 1.18021, 0.595229 )
+position = Vector2( 348, 601 )
+scale = Vector2( 1.58021, 0.715228 )
 color = Color( 0.509804, 0.482353, 0.482353, 1 )
 polygon = PoolVector2Array( 5, -5, 449, -5, 449, 127, 5, 127 )
 

@@ -57,13 +57,14 @@ scale = Vector2( 2.92, 1.8 )
 modulate = Color( 0.376471, 0.905882, 0.482353, 1 )
 position = Vector2( 1272, 336 )
 scale = Vector2( 1.32, 1.4 )
-speed_factor = 0.65
+speed_factor = Vector2( 0.65, 1 )
 
 [node name="MountainLocation" parent="." instance=ExtResource( 9 )]
 modulate = Color( 0.65098, 0.678431, 0.929412, 1 )
 position = Vector2( 3945, -185 )
 scale = Vector2( 3.41852, 3.18438 )
 enemies_positions = PoolVector2Array( 2766, -185, 4642, -350 )
+speed_factor = Vector2( 1, 0.85 )
 
 [node name="DisplayCanvas" parent="." instance=ExtResource( 7 )]
 
@@ -71,6 +72,9 @@ enemies_positions = PoolVector2Array( 2766, -185, 4642, -350 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 861, 389 )
+
+[node name="Camera2D" parent="Player" index="2"]
+limit_right = 9216
 
 [node name="BorderMountain" type="StaticBody2D" parent="."]
 position = Vector2( 203, 835 )
@@ -170,3 +174,5 @@ texture = ExtResource( 14 )
 [connection signal="body_exited" from="Camp" to="Camp" method="_on_Camp_body_exited"]
 [connection signal="body_entered" from="QuestChest" to="QuestChest" method="_on_QuestChest_body_entered"]
 [connection signal="body_exited" from="QuestChest" to="QuestChest" method="_on_QuestChest_body_exited"]
+
+[editable path="Player"]
