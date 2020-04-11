@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/etc/LocationArea.gd"
 }, {
+"base": "Button",
+"class": "MenuButton",
+"language": "GDScript",
+"path": "res://src/ui_components/buttons/Button.gd"
+}, {
 "base": "Actor",
 "class": "Player",
 "language": "GDScript",
@@ -78,6 +83,7 @@ _global_script_class_icons={
 "FightCloud": "",
 "Fraction": "",
 "LocationArea": "",
+"MenuButton": "",
 "Player": "",
 "PlayerTool": "",
 "QuestChest": "",
