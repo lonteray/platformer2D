@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/progress_bar_center.png" type="Texture" id=1]
 [ext_resource path="res://assets/progress_bar_holder_test.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/timer.png" type="Texture" id=5]
 [ext_resource path="res://src/ui_components/Pause.gd" type="Script" id=6]
+[ext_resource path="res://src/ui_components/buttons/NewGameButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/fonts/alexandriaflf_52.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/ui_components/buttons/MenuButton.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 53
@@ -106,3 +109,81 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0470588, 0.0470588, 0.0470588, 0.482353 )
+
+[node name="Menu" type="VBoxContainer" parent="Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -275.0
+margin_top = -175.0
+margin_right = 275.0
+margin_bottom = 175.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Pause/Menu"]
+margin_right = 550.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 8 )
+text = "Pause"
+align = 1
+
+[node name="ContinueButton" parent="Pause/Menu" instance=ExtResource( 10 )]
+margin_top = 72.0
+margin_right = 550.0
+margin_bottom = 132.0
+
+[node name="Label" parent="Pause/Menu/ContinueButton" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -123.0
+margin_top = -34.0
+margin_right = 123.0
+margin_bottom = 34.0
+text = "Continue"
+
+[node name="NewGameButton" parent="Pause/Menu" instance=ExtResource( 7 )]
+margin_top = 136.0
+margin_right = 550.0
+margin_bottom = 196.0
+scene_path = "res://src/maps/Island.tscn"
+
+[node name="Label" parent="Pause/Menu/NewGameButton" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -154.0
+margin_top = -34.0
+margin_right = 154.0
+margin_bottom = 34.0
+align = 1
+
+[node name="BackButton" parent="Pause/Menu" instance=ExtResource( 10 )]
+margin_top = 200.0
+margin_right = 550.0
+margin_bottom = 260.0
+scene_path = "res://src/ui_components/TitleScreen.tscn"
+
+[node name="Label" parent="Pause/Menu/BackButton" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = -34.0
+margin_right = 240.0
+margin_bottom = 34.0
+text = "Main menu"
+align = 1
+[connection signal="pressed" from="Pause/Menu/ContinueButton" to="Pause" method="_on_ContinueButton_pressed"]
+
+[editable path="Pause/Menu/ContinueButton"]
+
+[editable path="Pause/Menu/NewGameButton"]
+
+[editable path="Pause/Menu/BackButton"]

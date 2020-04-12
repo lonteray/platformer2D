@@ -7,3 +7,7 @@ func _input(event):
 func change_pause_state(state: bool):
 	get_tree().paused = state
 	visible = state
+
+
+func _on_ContinueButton_pressed():
+	change_pause_state(false)
