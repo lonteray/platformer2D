@@ -60,7 +60,14 @@ func fight_coroutine(enemy: Enemy) -> void:
 	set_active(false)
 	cloud.set_active(true, position, enemy.position)
 	enemy.set_active(false)
-	yield(get_tree().create_timer(1.0), "timeout")
+	#yield(get_tree().create_timer(1.0), "timeout")
+	var timer = Timer.new()
+	timer.set_wait_time(Constants.FIGHT_TIME)
+	timer.set_one_shot(true)
+	self.add_child(timer)
+	timer.start()
+	yield(timer, "timeout")
+	timer.queue_free()
 	if !enemy:
 		print("Enemy is empty")
 	var result: = health.compare(enemy.health)
@@ -79,6 +86,10 @@ func end_of_fight(winner: Actor, looser: Actor) -> void:
 	winner.set_active(true)
 
 func lifetime_coroutine() -> void:
+	var timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(Constants.PLAYER_HEALTH_INNER_STEP)
+	self.add_child(timer)
 	while true:
 		var outer: = calc_health_reduce_level()
 		var inner: = 0.0
@@ -86,7 +97,9 @@ func lifetime_coroutine() -> void:
 		var last_denom: = health.denom
 		var was_fight: = false
 		while inner < outer:
-			yield(get_tree().create_timer(Constants.PLAYER_HEALTH_INNER_STEP), "timeout")
+			#yield(get_tree().create_timer(Constants.PLAYER_HEALTH_INNER_STEP), "timeout")
+			timer.start()
+			yield(timer, "timeout")
 			if !is_alive:  
 				die()
 				return
@@ -110,6 +123,7 @@ func lifetime_coroutine() -> void:
 			die()
 			return
 		update_health_label()
+	timer.queue_free()
 
 func calc_health_reduce_level() -> float:
 	return Constants.PLAYER_LIFETIME / health.denom

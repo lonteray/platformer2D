@@ -28,5 +28,11 @@ func start_quest() -> void:
 	refresh_coroutine()
 
 func refresh_coroutine() -> void:
-	yield(get_tree().create_timer(Constants.QUEST_CHEST_REFRESH_TIME), "timeout")
+	var timer = Timer.new()
+	timer.set_wait_time(Constants.QUEST_CHEST_REFRESH_TIME)
+	timer.set_one_shot(true)
+	self.add_child(timer)
+	timer.start()
+	yield(timer, "timeout")
+	#yield(get_tree().create_timer(Constants.QUEST_CHEST_REFRESH_TIME), "timeout")
 	set_active(true)

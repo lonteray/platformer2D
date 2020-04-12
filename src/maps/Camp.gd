@@ -30,5 +30,12 @@ func set_active(active: bool) -> void:
 		switch_message(active)
 
 func refresh_coroutine() -> void:
-	yield(get_tree().create_timer(Constants.CAMP_HEALING_REFRESH_TIME), "timeout")
+	var timer = Timer.new()
+	timer.set_wait_time(Constants.CAMP_HEALING_REFRESH_TIME)
+	timer.set_one_shot(true)
+	self.add_child(timer)
+	timer.start()
+	yield(timer, "timeout")
+	#yield(get_tree().create_timer(Constants.CAMP_HEALING_REFRESH_TIME), "timeout")
 	set_active(true)
+	timer.queue_free()

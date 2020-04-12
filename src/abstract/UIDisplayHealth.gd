@@ -23,6 +23,10 @@ func update_status(value: float) -> void:
 	get_node("HealthStatus").value = progress
 
 func timer_coroutine(timer) -> void:
+	var t = Timer.new()
+	t.set_wait_time(TIMER_STEP)
+	t.set_one_shot(true)
+	self.add_child(t)
 	while !is_game_over:
 		var minutes: = int(time / MINUTE)
 		timer.text = ""
@@ -31,7 +35,10 @@ func timer_coroutine(timer) -> void:
 		var seconds = time - (minutes * MINUTE)
 		timer.text += str(seconds) + "s"
 		time += TIMER_STEP
-		yield(get_tree().create_timer(TIMER_STEP), "timeout")
+		t.start()
+		yield(t, "timeout")
+		#yield(get_tree().create_timer(TIMER_STEP), "timeout")
+	t.queue_free()
 
 func game_over() -> void:
 	is_game_over = true

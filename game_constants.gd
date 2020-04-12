@@ -9,6 +9,7 @@ const FOOD_LEVEL = 3
 const WORLD_LEVEL = 4
 
 const FIGHT_CLOUD_OFFSET = Vector2(0.0, -70.0)
+const FIGHT_TIME = 1.0
 
 #for player
 const PLAYER_LIFETIME = 10.0 # seconds

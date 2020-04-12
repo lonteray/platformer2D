@@ -23,6 +23,14 @@ func set_active(state: bool, first_actor_pos = Vector2.ZERO, second_actor_pos = 
 		fight_cloud_coroutine()
 
 func fight_cloud_coroutine() -> void:
+	var thick = Constants.FIGHT_TIME / textures.size()
+	var timer = Timer.new()
+	timer.set_wait_time(thick)
+	timer.set_one_shot(true)
+	self.add_child(timer)
 	for i in textures.size():
 		set_texture(textures[i])
-		yield(get_tree().create_timer(0.25), "timeout")
+		timer.start()
+		yield(timer, "timeout")
+		timer.queue_free()
+		#yield(get_tree().create_timer(0.25), "timeout")

@@ -43,8 +43,15 @@ func _on_LocationArea_body_exited(body: KinematicBody2D):
 func enemy_respawn_coroutine() -> void:
 	var thick: = 0.1
 	var time: = 0.0
+	var timer = Timer.new()
+	timer.set_wait_time(thick)
+	timer.set_one_shot(true)
+	self.add_child(timer)
 	while is_area_empty and time < Constants.ENEMY_RESPAWN_TIME:
-		yield(get_tree().create_timer(thick), "timeout")
+		timer.start()
+		yield(timer, "timeout")
+		#yield(get_tree().create_timer(thick), "timeout")
 		time += thick
+	timer.queue_free()
 	if is_area_empty:
 		factory.instantiate()
