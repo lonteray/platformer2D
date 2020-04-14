@@ -95,6 +95,74 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="GameOver" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackOverlay" type="ColorRect" parent="GameOver"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0196078, 0.0196078, 0.0196078, 0.501961 )
+
+[node name="Menu" type="VBoxContainer" parent="GameOver"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -275.0
+margin_top = -175.0
+margin_right = 275.0
+margin_bottom = 175.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainLabel" type="Label" parent="GameOver/Menu"]
+margin_right = 550.0
+margin_bottom = 119.0
+custom_fonts/font = ExtResource( 8 )
+text = "DEAD
+Your time is "
+align = 1
+
+[node name="NewGameButton" parent="GameOver/Menu" instance=ExtResource( 7 )]
+margin_top = 123.0
+margin_right = 550.0
+margin_bottom = 183.0
+
+[node name="Label" parent="GameOver/Menu/NewGameButton" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -131.0
+margin_top = -29.0
+margin_right = 131.0
+margin_bottom = 29.0
+align = 1
+
+[node name="BackButton" parent="GameOver/Menu" instance=ExtResource( 10 )]
+margin_top = 187.0
+margin_right = 550.0
+margin_bottom = 247.0
+scene_path = "res://src/ui_components/TitleScreen.tscn"
+
+[node name="Label" parent="GameOver/Menu/BackButton" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -134.0
+margin_top = -29.0
+margin_right = 134.0
+margin_bottom = 29.0
+text = "Main Menu"
+align = 1
+
 [node name="Pause" type="Control" parent="."]
 pause_mode = 2
 visible = false
@@ -125,15 +193,15 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Pause/Menu"]
 margin_right = 550.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 8 )
 text = "Pause"
 align = 1
 
 [node name="ContinueButton" parent="Pause/Menu" instance=ExtResource( 10 )]
-margin_top = 72.0
+margin_top = 84.0
 margin_right = 550.0
-margin_bottom = 132.0
+margin_bottom = 144.0
 
 [node name="Label" parent="Pause/Menu/ContinueButton" index="0"]
 anchor_left = 0.5
@@ -147,9 +215,9 @@ margin_bottom = 34.0
 text = "Continue"
 
 [node name="NewGameButton" parent="Pause/Menu" instance=ExtResource( 7 )]
-margin_top = 136.0
+margin_top = 148.0
 margin_right = 550.0
-margin_bottom = 196.0
+margin_bottom = 208.0
 scene_path = "res://src/maps/Island.tscn"
 
 [node name="Label" parent="Pause/Menu/NewGameButton" index="0"]
@@ -164,9 +232,9 @@ margin_bottom = 34.0
 align = 1
 
 [node name="BackButton" parent="Pause/Menu" instance=ExtResource( 10 )]
-margin_top = 200.0
+margin_top = 212.0
 margin_right = 550.0
-margin_bottom = 260.0
+margin_bottom = 272.0
 scene_path = "res://src/ui_components/TitleScreen.tscn"
 
 [node name="Label" parent="Pause/Menu/BackButton" index="0"]
@@ -181,6 +249,10 @@ margin_bottom = 34.0
 text = "Main menu"
 align = 1
 [connection signal="pressed" from="Pause/Menu/ContinueButton" to="Pause" method="_on_ContinueButton_pressed"]
+
+[editable path="GameOver/Menu/NewGameButton"]
+
+[editable path="GameOver/Menu/BackButton"]
 
 [editable path="Pause/Menu/ContinueButton"]
 

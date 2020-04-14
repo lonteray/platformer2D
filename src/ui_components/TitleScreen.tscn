@@ -95,7 +95,4 @@ align = 1
 
 [node name="FadeIn" parent="." instance=ExtResource( 6 )]
 visible = false
-[connection signal="pressed" from="Menu/CenterRow/Buttons/NewGameButton" to="Menu/CenterRow/Buttons/NewGameButton" method="_on_MenuButton_pressed"]
-[connection signal="pressed" from="Menu/CenterRow/Buttons/OptionsButton" to="Menu/CenterRow/Buttons/OptionsButton" method="_on_MenuButton_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/ExitButton" to="Menu/CenterRow/Buttons/ExitButton" method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="Menu/CenterRow/Buttons/ExitButton" to="Menu/CenterRow/Buttons/ExitButton" method="_on_MenuButton_pressed"]

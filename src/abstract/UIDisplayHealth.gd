@@ -28,12 +28,12 @@ func timer_coroutine(timer) -> void:
 	t.set_one_shot(true)
 	self.add_child(t)
 	while !is_game_over:
-		var minutes: = int(time / MINUTE)
-		timer.text = ""
-		if minutes > 0:
-			timer.text += str(minutes) + "m "
-		var seconds = time - (minutes * MINUTE)
-		timer.text += str(seconds) + "s"
+#		var minutes: = int(time / MINUTE)
+#		timer.text = ""
+#		if minutes > 0:
+#			timer.text += str(minutes) + "m "
+#		var seconds = time - (minutes * MINUTE)
+		timer.text = convert_time_to_string()
 		time += TIMER_STEP
 		t.start()
 		yield(t, "timeout")
@@ -42,3 +42,17 @@ func timer_coroutine(timer) -> void:
 
 func game_over() -> void:
 	is_game_over = true
+	get_node("GameOver/Menu/MainLabel").text += convert_time_to_string()
+	get_node("GameOver").visible = true
+
+func is_game_over() -> bool:
+	return is_game_over
+
+func convert_time_to_string() -> String:
+	var result: = ""
+	var minutes: = int(time / MINUTE)
+	if minutes > 0:
+		result += str(minutes) + "m "
+	var seconds = time - (minutes * MINUTE)
+	result += str(seconds) + "s"
+	return result
