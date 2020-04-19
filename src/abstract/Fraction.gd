@@ -20,13 +20,14 @@ func compare(other: Fraction) -> int:
 	else:
 		return 1
 		
-func add(other: Fraction) -> void:
+func add(other: Fraction, should_be_lowest: = false) -> void:
 	var gcd = calc_gcd(denom, other.denom)
 	var final_denom = (denom * other.denom) / gcd
 	var final_num = num * (final_denom / denom) + other.num * (final_denom / other.denom)
 	num = final_num
 	denom = final_denom
-	lowest() # convert final fraction to its simplest form
+	if should_be_lowest:
+		lowest() # convert final fraction to its simplest form
 	
 func add_value(value: float) -> void:
 	num += int(value * denom)
