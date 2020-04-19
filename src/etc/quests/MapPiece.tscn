@@ -1,21 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/fonts/map_font_94.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/torn_map/first_num.png" type="Texture" id=2]
+[ext_resource path="res://src/etc/quests/MapPiece2.gd" type="Script" id=3]
+
+[sub_resource type="PhysicsMaterial" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 118, 86 )
+extents = Vector2( 120.5, 86 )
 
 [node name="MapPiece" type="StaticBody2D"]
 scale = Vector2( 0.72, 0.72 )
+input_pickable = true
+physics_material_override = SubResource( 2 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 117, 90 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

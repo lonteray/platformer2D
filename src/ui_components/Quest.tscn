@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/torn_map/first_num.png" type="Texture" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://src/fonts/map_font_94.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/torn_map/second_denom.png" type="Texture" id=9]
 [ext_resource path="res://assets/torn_map/res_denom.png" type="Texture" id=10]
-[ext_resource path="res://src/fonts/map_font_58.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/etc/quests/Map_Piece.gd" type="Script" id=11]
 [ext_resource path="res://src/ui_components/Quest.gd" type="Script" id=12]
 [ext_resource path="res://src/fonts/alexandriaflf_52.tres" type="DynamicFont" id=13]
 
@@ -19,8 +19,29 @@ size = 23
 use_filter = true
 font_data = ExtResource( 1 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 115.741, 87.7193 )
+
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 116.667, 89.4737 )
+extents = Vector2( 93.2626, 86 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 72.0435, 91.3743 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 42.4384, 111.477 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 108.025, 90 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 59.7996, 60.307 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 100.979, 91.8275 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 67.5155, 86 )
 
 [node name="CanvasQuest" type="CanvasLayer"]
 script = ExtResource( 12 )
@@ -34,6 +55,7 @@ margin_left = -475.0
 margin_top = -295.0
 margin_right = 475.0
 margin_bottom = 295.0
+mouse_filter = 2
 color = Color( 0.729412, 0.729412, 0.729412, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -70,153 +92,275 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FirstNumTexture" type="TextureRect" parent="TornMap"]
-margin_right = 237.0
-margin_bottom = 179.0
+[node name="FirstNum" type="StaticBody2D" parent="TornMap"]
+scale = Vector2( 0.72, 0.72 )
+input_pickable = true
+collision_layer = 3
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstNum"]
+position = Vector2( 113.812, 89.5468 )
+shape = SubResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/FirstNum"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TornMap/FirstNumTexture"]
-margin_left = 48.6111
-margin_top = 69.7368
-margin_right = 88.6111
-margin_bottom = 134.737
-custom_fonts/font = ExtResource( 11 )
+[node name="Label" type="Label" parent="TornMap/FirstNum"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 42.0
+margin_top = 30.0
+margin_right = 93.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "1"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstNumTexture"]
-position = Vector2( 119.445, 86.059 )
-shape = SubResource( 2 )
-
-[node name="SecondNumTexture" type="TextureRect" parent="TornMap"]
-margin_left = 228.0
-margin_right = 426.0
-margin_bottom = 173.0
-texture = ExtResource( 7 )
-
-[node name="Label" type="Label" parent="TornMap/SecondNumTexture"]
-margin_left = 73.3894
-margin_top = 69.7368
-margin_right = 113.389
-margin_bottom = 134.737
-custom_fonts/font = ExtResource( 11 )
-custom_colors/font_color = Color( 0.996078, 0.992157, 0.992157, 1 )
-text = "2"
-
-[node name="ResNumTexture" type="TextureRect" parent="TornMap"]
-margin_left = 415.0
-margin_right = 565.0
-margin_bottom = 188.0
-texture = ExtResource( 4 )
-
-[node name="Label" type="Label" parent="TornMap/ResNumTexture"]
-margin_left = 79.4453
-margin_top = 69.7368
-margin_right = 119.445
-margin_bottom = 134.737
-custom_fonts/font = ExtResource( 11 )
-custom_colors/font_color = Color( 0.996078, 0.992157, 0.992157, 1 )
 text = "3"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FirstOpTexture" type="TextureRect" parent="TornMap"]
-margin_left = 119.0
-margin_top = 98.0
-margin_right = 248.0
-margin_bottom = 233.0
-texture = ExtResource( 3 )
+[node name="SecondNum" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 165.278, 0 )
+scale = Vector2( 0.72, 0.72 )
+input_pickable = true
+script = ExtResource( 11 )
 
-[node name="Label" type="Label" parent="TornMap/FirstOpTexture"]
-margin_left = 54.6114
-margin_top = -0.631561
-margin_right = 94.6114
-margin_bottom = 103.368
-custom_fonts/font = ExtResource( 8 )
-custom_colors/font_color = Color( 0.996078, 0.992157, 0.992157, 1 )
-text = "+"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondNum"]
+position = Vector2( 98.3798, 89.5468 )
+shape = SubResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/SecondNum"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SecondOpTexture" type="TextureRect" parent="TornMap"]
-margin_left = 372.0
-margin_top = 117.0
-margin_right = 463.0
-margin_bottom = 347.0
-texture = ExtResource( 6 )
-
-[node name="Label" type="Label" parent="TornMap/SecondOpTexture"]
-margin_left = 36.3341
-margin_top = -19.6316
-margin_right = 76.3341
-margin_bottom = 84.3684
+[node name="Label" type="Label" parent="TornMap/SecondNum"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 61.7284
+margin_top = 29.2397
+margin_right = 112.728
+margin_bottom = 133.24
 custom_fonts/font = ExtResource( 8 )
-custom_colors/font_color = Color( 0.996078, 0.992157, 0.992157, 1 )
+custom_colors/font_color = Color( 1, 0.996078, 0.996078, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResNum" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 301.389, 0 )
+scale = Vector2( 0.72, 0.72 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/ResNum"]
+position = Vector2( 73.3026, 89.5468 )
+shape = SubResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/ResNum"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/ResNum"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 73.3026
+margin_top = 29.2397
+margin_right = 124.303
+margin_bottom = 133.24
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondOp" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 270.834, 90.7895 )
+scale = Vector2( 0.72, 0.72 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondOp"]
+position = Vector2( 46.2964, 111.477 )
+shape = SubResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/SecondOp"]
+margin_top = -3.655
+margin_right = 91.0
+margin_bottom = 226.345
+mouse_filter = 2
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/SecondOp"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 36.6512
+margin_top = -29.2397
+margin_right = 87.6512
+margin_bottom = 74.7603
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.984314, 0.964706, 0.964706, 1 )
 text = "="
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FirstDenomTexture" type="TextureRect" parent="TornMap"]
-margin_left = -2.0
-margin_top = 161.0
-margin_right = 222.0
-margin_bottom = 351.0
+[node name="FirstDenom" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 0, 117.105 )
+scale = Vector2( 0.72, 0.72 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstDenom"]
+position = Vector2( 109.954, 91.3743 )
+shape = SubResource( 6 )
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/FirstDenom"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="TornMap/FirstDenomTexture"]
-margin_left = 50.6111
-margin_top = 27.1579
-margin_right = 90.6111
-margin_bottom = 92.1579
-custom_fonts/font = ExtResource( 11 )
-custom_colors/font_color = Color( 0.996078, 0.992157, 0.992157, 1 )
+[node name="Label" type="Label" parent="TornMap/FirstDenom"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 42.0
+margin_top = 30.0
+margin_right = 93.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.988235, 0.988235, 0.988235, 1 )
 text = "3"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SecondDenomTexture" type="TextureRect" parent="TornMap"]
-margin_left = 195.0
-margin_top = 158.0
-margin_right = 409.0
-margin_bottom = 350.0
+[node name="FirstOp" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 87.5001, 69.7368 )
+scale = Vector2( 0.72, 0.72 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstOp"]
+position = Vector2( 65.5865, 65.7895 )
+shape = SubResource( 7 )
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/FirstOp"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/FirstOp"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 65.5865
+margin_right = 116.587
+margin_bottom = 104.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondDenom" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 143.056, 117.105 )
+scale = Vector2( 0.72, 0.72 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondDenom"]
+position = Vector2( 108.025, 100.512 )
+shape = SubResource( 8 )
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/SecondDenom"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="TornMap/SecondDenomTexture"]
-margin_left = 106.389
-margin_top = 30.1579
-margin_right = 146.389
-margin_bottom = 95.1579
-custom_fonts/font = ExtResource( 11 )
-custom_colors/font_color = Color( 0.996078, 0.992157, 0.992157, 1 )
+[node name="Label" type="Label" parent="TornMap/SecondDenom"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 92.5927
+margin_top = 29.2397
+margin_right = 143.593
+margin_bottom = 133.24
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.988235, 0.988235, 0.988235, 1 )
 text = "3"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResDenomTexture" type="TextureRect" parent="TornMap"]
-margin_left = 415.0
-margin_top = 176.0
-margin_right = 565.0
-margin_bottom = 349.0
-texture = ExtResource( 10 )
+[node name="ResDenom" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 304.167, 128.947 )
+scale = Vector2( 0.72, 0.72 )
+script = ExtResource( 11 )
 
-[node name="Label" type="Label" parent="TornMap/ResDenomTexture"]
-margin_left = 79.4453
-margin_top = 12.1579
-margin_right = 119.445
-margin_bottom = 77.1579
-custom_fonts/font = ExtResource( 11 )
-custom_colors/font_color = Color( 0.996078, 0.992157, 0.992157, 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/ResDenom"]
+position = Vector2( 77.1606, 89.5468 )
+shape = SubResource( 9 )
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/ResDenom"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/ResDenom"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 69.4446
+margin_top = 12.7924
+margin_right = 120.445
+margin_bottom = 116.792
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 0.996078, 0.996078, 1 )
 text = "3"
 __meta__ = {
 "_edit_use_anchors_": false

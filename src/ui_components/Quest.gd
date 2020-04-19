@@ -26,12 +26,12 @@ func _ready():
 	reload()
 
 func bind_nodes():
-	first_num_label = get_node("TornMap/FirstNumTexture/Label")
-	first_denom_label = get_node("TornMap/FirstDenomTexture/Label")
-	second_num_label = get_node("TornMap/SecondNumTexture/Label")
-	second_denom_label = get_node("TornMap/SecondDenomTexture/Label")
-	res_num_label = get_node("TornMap/ResNumTexture/Label")
-	res_denom_label = get_node("TornMap/ResDenomTexture/Label")
+	first_num_label = get_node("TornMap/FirstNum/Label")
+	first_denom_label = get_node("TornMap/FirstDenom/Label")
+	second_num_label = get_node("TornMap/SecondNum/Label")
+	second_denom_label = get_node("TornMap/SecondDenom/Label")
+	res_num_label = get_node("TornMap/ResNum/Label")
+	res_denom_label = get_node("TornMap/ResDenom/Label")
 	map_piece_script = load("res://src/etc/quests/Map_Piece.gd")
 	
 
@@ -44,17 +44,17 @@ func reload():
 func reload_lost_piece():
 	var lost_piece_index =  randi() % PIECES_COUNT
 	if lost_piece_index == 0:
-		lost_piece = get_node("TornMap/FirstNumTexture") 
+		lost_piece = get_node("TornMap/FirstNum") 
 	elif lost_piece_index == 1:
-		lost_piece = get_node("TornMap/FirstDenomTexture")
+		lost_piece = get_node("TornMap/FirstDenom")
 	elif lost_piece_index == 2:
-		lost_piece = get_node("TornMap/SecondNumTexture")
+		lost_piece = get_node("TornMap/SecondNum")
 	elif lost_piece_index == 3:
-		lost_piece = get_node("TornMap/SecondDenomTexture")
+		lost_piece = get_node("TornMap/SecondDenom")
 	elif lost_piece_index == 4:
-		lost_piece = get_node("TornMap/ResNumTexture")
+		lost_piece = get_node("TornMap/ResNum")
 	elif lost_piece_index == 5:
-		lost_piece = get_node("TornMap/ResDenomTexture")
+		lost_piece = get_node("TornMap/ResDenom")
 	lost_piece.visible = false
 	create_options()
 
@@ -83,7 +83,8 @@ func create_options():
 			duplicate.get_node("Label").text = new_text
 		duplicate.set_script(map_piece_script)
 		duplicate.connect("clicked", self, "_on_pickable_clicked")
-		x_offset += duplicate.get_size().x + OPTION_MARGIN
+		duplicate.set_pickable(true)
+		x_offset += duplicate.get_node("TextureRect").get_size().x + OPTION_MARGIN
 		get_node("OptionsPanel").call_deferred("add_child", duplicate)
 
 func reload_fractions():
@@ -114,7 +115,3 @@ func _unhandled_input(event):
 		if held_object and !event.is_pressed():
 			held_object.drop()
 			held_object = null
-	
-	
-	
-	
