@@ -16,7 +16,10 @@ var second_denom_label
 var res_num_label
 var res_denom_label
 
-var lost_piece
+var lost_piece  
+var held_object = null
+var map_piece_script = null
+
 
 func _ready():
 	bind_nodes()
@@ -29,6 +32,7 @@ func bind_nodes():
 	second_denom_label = get_node("TornMap/SecondDenomTexture/Label")
 	res_num_label = get_node("TornMap/ResNumTexture/Label")
 	res_denom_label = get_node("TornMap/ResDenomTexture/Label")
+	map_piece_script = load("res://src/etc/quests/Map_Piece.gd")
 	
 
 func reload():
@@ -54,27 +58,31 @@ func reload_lost_piece():
 	lost_piece.visible = false
 	create_options()
 
+#create lost map piece duplicates as options with different values 
 func create_options():
-	var x_offset = 0.0
-	var existed_values: Array
-	existed_values.append(lost_piece.get_node("Label").text)
-	var correct_option_index = randi() % Constants.QUEST_OPTIONS_COUNT
+	var x_offset = 0.0   #offset for option position
+	var existed_values: Array   # values that already presents in options list
+	existed_values.append(lost_piece.get_node("Label").text)	# save correct value as already existed
+	var correct_option_index = randi() % Constants.QUEST_OPTIONS_COUNT  # correct answer index in options list
 	for i in Constants.QUEST_OPTIONS_COUNT:
-		var duplicate = lost_piece.duplicate()
-		duplicate.visible = true
+		var duplicate = lost_piece.duplicate() 
+		duplicate.visible = true 
 		duplicate.set_position(Vector2(x_offset, 0))
 		if i != correct_option_index:
-			var is_good: = false
+			#this option should be wrong
+			var is_unique: = false
 			var new_text: String
-			while not is_good:
+			while not is_unique:
 				new_text = str(randi() % 10 + 1)
-				is_good = true
+				is_unique = true
 				for i in existed_values:
 					if i == new_text:
-						is_good = false
+						is_unique = false
 						break
 			existed_values.append(new_text)
 			duplicate.get_node("Label").text = new_text
+		duplicate.set_script(map_piece_script)
+		duplicate.connect("clicked", self, "_on_pickable_clicked")
 		x_offset += duplicate.get_size().x + OPTION_MARGIN
 		get_node("OptionsPanel").call_deferred("add_child", duplicate)
 
@@ -95,6 +103,17 @@ func update_labels():
 	second_denom_label.text = str(second.denom)
 	res_num_label.text = str(result.num)
 	res_denom_label.text = str(result.denom)
+
+func _on_pickable_clicked(object):
+	if !held_object:
+		held_object = object
+		held_object.pickup()
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		if held_object and !event.is_pressed():
+			held_object.drop()
+			held_object = null
 	
 	
 	
