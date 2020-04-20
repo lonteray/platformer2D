@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/torn_map/first_num.png" type="Texture" id=2]
@@ -19,10 +19,10 @@ size = 23
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 115.741, 87.7193 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 93.2626, 86 )
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -42,6 +42,9 @@ extents = Vector2( 100.979, 91.8275 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 67.5155, 86 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 283.334, 172.368 )
 
 [node name="CanvasQuest" type="CanvasLayer"]
 script = ExtResource( 12 )
@@ -93,14 +96,13 @@ __meta__ = {
 }
 
 [node name="FirstNum" type="StaticBody2D" parent="TornMap"]
-scale = Vector2( 0.72, 0.72 )
 input_pickable = true
-collision_layer = 3
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstNum"]
 position = Vector2( 113.812, 89.5468 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
+disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="TornMap/FirstNum"]
 margin_right = 40.0
@@ -128,14 +130,14 @@ __meta__ = {
 }
 
 [node name="SecondNum" type="StaticBody2D" parent="TornMap"]
-position = Vector2( 165.278, 0 )
-scale = Vector2( 0.72, 0.72 )
+position = Vector2( 229.167, 0 )
 input_pickable = true
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondNum"]
 position = Vector2( 98.3798, 89.5468 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
+disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="TornMap/SecondNum"]
 margin_right = 40.0
@@ -163,13 +165,13 @@ __meta__ = {
 }
 
 [node name="ResNum" type="StaticBody2D" parent="TornMap"]
-position = Vector2( 301.389, 0 )
-scale = Vector2( 0.72, 0.72 )
+position = Vector2( 416.667, 0 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/ResNum"]
 position = Vector2( 73.3026, 89.5468 )
 shape = SubResource( 4 )
+disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="TornMap/ResNum"]
 margin_right = 40.0
@@ -197,13 +199,13 @@ __meta__ = {
 }
 
 [node name="SecondOp" type="StaticBody2D" parent="TornMap"]
-position = Vector2( 270.834, 90.7895 )
-scale = Vector2( 0.72, 0.72 )
+position = Vector2( 373.612, 126.316 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondOp"]
 position = Vector2( 46.2964, 111.477 )
 shape = SubResource( 5 )
+disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="TornMap/SecondOp"]
 margin_top = -3.655
@@ -232,13 +234,13 @@ __meta__ = {
 }
 
 [node name="FirstDenom" type="StaticBody2D" parent="TornMap"]
-position = Vector2( 0, 117.105 )
-scale = Vector2( 0.72, 0.72 )
+position = Vector2( 0, 160.526 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstDenom"]
 position = Vector2( 109.954, 91.3743 )
 shape = SubResource( 6 )
+disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="TornMap/FirstDenom"]
 margin_right = 40.0
@@ -266,13 +268,13 @@ __meta__ = {
 }
 
 [node name="FirstOp" type="StaticBody2D" parent="TornMap"]
-position = Vector2( 87.5001, 69.7368 )
-scale = Vector2( 0.72, 0.72 )
+position = Vector2( 120.833, 97.3685 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstOp"]
 position = Vector2( 65.5865, 65.7895 )
 shape = SubResource( 7 )
+disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="TornMap/FirstOp"]
 margin_right = 40.0
@@ -299,13 +301,13 @@ __meta__ = {
 }
 
 [node name="SecondDenom" type="StaticBody2D" parent="TornMap"]
-position = Vector2( 143.056, 117.105 )
-scale = Vector2( 0.72, 0.72 )
+position = Vector2( 195.834, 160.526 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondDenom"]
 position = Vector2( 108.025, 100.512 )
 shape = SubResource( 8 )
+disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="TornMap/SecondDenom"]
 margin_right = 40.0
@@ -333,13 +335,13 @@ __meta__ = {
 }
 
 [node name="ResDenom" type="StaticBody2D" parent="TornMap"]
-position = Vector2( 304.167, 128.947 )
-scale = Vector2( 0.72, 0.72 )
+position = Vector2( 419.445, 178.947 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/ResDenom"]
 position = Vector2( 77.1606, 89.5468 )
 shape = SubResource( 9 )
+disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="TornMap/ResDenom"]
 margin_right = 40.0
@@ -390,3 +392,17 @@ rect_scale = Vector2( 0.7, 0.7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MapArea" type="Area2D" parent="."]
+position = Vector2( 515, 183 )
+scale = Vector2( 0.719999, 0.76 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapArea"]
+position = Vector2( 240.278, 155.263 )
+shape = SubResource( 10 )
+
+[node name="OptionsArea" type="Area2D" parent="."]
+position = Vector2( 292, 478 )
+scale = Vector2( 0.7, 0.7 )
+[connection signal="body_entered" from="MapArea" to="." method="_on_MapArea_body_entered"]
+[connection signal="body_exited" from="MapArea" to="." method="_on_MapArea_body_exited"]

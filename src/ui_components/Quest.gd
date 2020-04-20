@@ -67,7 +67,10 @@ func create_options():
 	for i in Constants.QUEST_OPTIONS_COUNT:
 		var duplicate = lost_piece.duplicate() 
 		duplicate.visible = true 
+		duplicate.global_transform.origin = get_node("OptionsArea").get_global_transform().origin		
 		duplicate.set_position(Vector2(x_offset, 0))
+		duplicate.get_node("CollisionShape2D").disabled = false
+#		duplicate.translate(duplicate.get_transform().basis.xform(Vector2(x_offset, 0)))
 		if i != correct_option_index:
 			#this option should be wrong
 			var is_unique: = false
@@ -81,11 +84,12 @@ func create_options():
 						break
 			existed_values.append(new_text)
 			duplicate.get_node("Label").text = new_text
-		duplicate.set_script(map_piece_script)
 		duplicate.connect("clicked", self, "_on_pickable_clicked")
-		duplicate.set_pickable(true)
-		x_offset += duplicate.get_node("TextureRect").get_size().x + OPTION_MARGIN
-		get_node("OptionsPanel").call_deferred("add_child", duplicate)
+		var object_width = 2 * duplicate.get_node("CollisionShape2D").get_shape().get_extents().x
+		x_offset += object_width + OPTION_MARGIN
+#		print("Node width is " + str(object_width))
+		#get_node("OptionsArea").call_deferred("add_child", duplicate)
+		get_tree().get_current_scene().call_deferred("add_child", duplicate)
 
 func reload_fractions():
 	var first_denom = randi() % (Constants.QUEST_DENOM_HIGH_LIMIT + 1) + Constants.QUEST_DENOM_LOW_LIMIT
@@ -115,3 +119,14 @@ func _unhandled_input(event):
 		if held_object and !event.is_pressed():
 			held_object.drop()
 			held_object = null
+
+
+func _on_MapArea_body_entered(body):
+	body.area_entrance(true)
+	print("entry")
+
+
+func _on_MapArea_body_exited(body):
+	print("exit")
+	if body.is_in_area():
+		body.area_entrance(false)
