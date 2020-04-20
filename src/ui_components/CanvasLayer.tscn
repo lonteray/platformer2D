@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/background.png" type="Texture" id=1]
+[ext_resource path="res://assets/final_background.png" type="Texture" id=1]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = -100
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 689, 395 )
-scale = Vector2( 2.16022, 2.36087 )
+position = Vector2( 687.458, 399.385 )
+scale = Vector2( 2.34717, 2.2981 )
 texture = ExtResource( 1 )

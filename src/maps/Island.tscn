@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/platform2d/textures/thick_platform_default.tres" type="Resource" id=1]
 [ext_resource path="res://addons/platform2d/thick_platform.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/maps/Camp.gd" type="Script" id=13]
 [ext_resource path="res://assets/chest.png" type="Texture" id=14]
 [ext_resource path="res://src/maps/QuestChest.gd" type="Script" id=15]
+[ext_resource path="res://assets/parallax_background/clouds.png" type="Texture" id=16]
 
 [sub_resource type="Curve2D" id=6]
 bake_interval = 50.0
@@ -74,7 +75,9 @@ speed_factor = Vector2( 1, 0.85 )
 position = Vector2( 861, 389 )
 
 [node name="Camera2D" parent="Player" index="2"]
+limit_top = -1024
 limit_right = 9216
+limit_bottom = 1024
 
 [node name="BorderMountain" type="StaticBody2D" parent="."]
 position = Vector2( 203, 835 )
@@ -170,6 +173,19 @@ shape = SubResource( 5 )
 position = Vector2( 6905, 515 )
 scale = Vector2( 0.489283, 0.478969 )
 texture = ExtResource( 14 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 0.5, 0.5 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 1387.25, 686.469 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 0, -5.99999 )
+scale = Vector2( 1.78968, 2.35853 )
+texture = ExtResource( 16 )
+centered = false
 [connection signal="body_entered" from="Camp" to="Camp" method="_on_Camp_body_entered"]
 [connection signal="body_exited" from="Camp" to="Camp" method="_on_Camp_body_exited"]
 [connection signal="body_entered" from="QuestChest" to="QuestChest" method="_on_QuestChest_body_entered"]

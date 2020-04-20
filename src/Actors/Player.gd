@@ -116,7 +116,7 @@ func lifetime_coroutine() -> void:
 					inner += Constants.PLAYER_HEALTH_INNER_STEP
 			else:
 				was_fight = true
-		health.num -= 1
+		#health.num -= 1
 		ui_component.update_label(health.num, health.denom)
 		if health.num <= 0:
 			will_die()
