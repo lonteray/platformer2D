@@ -22,7 +22,7 @@ func _ready():
 		factory.instantiate()
 
 func _on_LocationArea_body_entered(body: KinematicBody2D):
-	if body.collision_layer == Constants.PLAYER_LEVEL:
+	if body and body.collision_layer == Constants.PLAYER_LEVEL:
 		print("Player entered on area")
 		is_area_empty = false
 		body.speed.x *= speed_factor.x
@@ -31,7 +31,7 @@ func _on_LocationArea_body_entered(body: KinematicBody2D):
 
 
 func _on_LocationArea_body_exited(body: KinematicBody2D):
-	if body.collision_layer == Constants.PLAYER_LEVEL:
+	if body and body.collision_layer == Constants.PLAYER_LEVEL:
 		print("Player exited on area")
 		is_area_empty = true
 		body.speed.x /= speed_factor.x

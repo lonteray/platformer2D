@@ -1,6 +1,6 @@
 extends Control
 
-class_name CanvasQuest
+class_name Quest
 
 const PIECES_COUNT: = 6
 const OPTION_MARGIN: = 30
@@ -21,6 +21,7 @@ var held_object = null
 var map_piece_script = null
 var is_mouse_dragging = false
 var held_in_area = false
+var caller
 
 
 func _ready():
@@ -35,6 +36,7 @@ func bind_nodes():
 	res_num_label = get_node("TornMap/ResNum/Label")
 	res_denom_label = get_node("TornMap/ResDenom/Label")
 	map_piece_script = load("res://src/etc/quests/Map_Piece.gd")
+	caller = get_tree().get_current_scene().find_node("QuestChest")
 	
 
 func reload():
@@ -98,9 +100,18 @@ func create_options():
 		duplicate.connect("clicked", self, "_on_pickable_clicked")
 		var object_width = 2 * duplicate.get_node("CollisionShape2D").get_shape().get_extents().x
 		x_offset += object_width + OPTION_MARGIN
-		duplicate.set_pickable(true)
+		#duplicate.set_pickable(true)
 		#get_tree().get_current_scene().call_deferred("add_child", duplicate)
 		get_node("OptionsArea").add_child(duplicate)
+
+func activate():
+	for option in $OptionsArea.get_children():
+		option.get_node("CollisionShape2D").disabled = false
+		option.set_pickable(true)
+	$MapArea/CollisionShape2D.disabled = false
+
+func disactivate():
+	$MapArea/CollisionShape2D.disabled = true
 
 func reload_fractions():
 	var first_denom = randi() % (Constants.QUEST_DENOM_HIGH_LIMIT + 1) + Constants.QUEST_DENOM_LOW_LIMIT
@@ -112,6 +123,8 @@ func reload_fractions():
 		second.num = randi() % (Constants.QUEST_NUM_HIGH_LIMIT + 1) + Constants.QUEST_NUM_LOW_LIMIT
 		if (first.num + second.num) % first.denom == 0:
 			break
+	result.num = 0
+	result.denom = 1
 	result.add(first)
 	result.add(second, true)
 
@@ -135,9 +148,12 @@ func _unhandled_input(event):
 			held_object.drop()
 			is_mouse_dragging = false
 			if held_in_area:
+				var won: = false
 				if held_object.get_node("Label").text == lost_piece.get_node("Label").text:
 					held_object.visible = false
 					lost_piece.visible = true
+					won = true
+				final_coroutine(won)
 			held_object = null
 			held_in_area = false
 
@@ -145,12 +161,36 @@ func _on_MapArea_mouse_entered():
 	if is_mouse_dragging:
 		held_in_area = true
 
-
 func _on_MapArea_mouse_exited():
 	if is_mouse_dragging:
 		held_in_area = false
 
-
 func _on_ExitButton_pressed():
-	get_parent().get_child(0).visible = false
-	reload()
+	end()
+
+func final_coroutine(is_happy = false):
+	var message: String
+	if is_happy:
+		message = "Congratulations"
+	else:
+		message = "WRONG"
+	$FinalMessage.text = message
+	$FinalMessage.visible = true
+	$OptionsArea.visible = false
+	$ExitButton.visible = false
+	var timer = Timer.new()
+	timer.set_wait_time(Constants.QUEST_END_DELAY_TIME)
+	timer.set_one_shot(true)
+	self.add_child(timer)
+	timer.start()
+	yield(timer, "timeout")
+	$FinalMessage.visible = false
+	$OptionsArea.visible = true
+	$ExitButton.visible = true
+	end(is_happy)
+
+func end(is_happy = false):
+	for option in $OptionsArea.get_children():
+		$OptionsArea.remove_child(option)
+		option.queue_free()
+	caller.exit_quest(is_happy)

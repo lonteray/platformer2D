@@ -1,6 +1,13 @@
 extends PlayerTool
 
 class_name QuestChest
+var quest
+var pause_menu
+export var treasure = 3
+
+func _ready():
+	quest = get_tree().get_current_scene().find_node("Quest")
+	pause_menu = get_tree().get_current_scene().find_node("Pause")
 
 func _on_QuestChest_body_entered(body: KinematicBody2D):
 	if is_active:
@@ -25,7 +32,18 @@ func _process(delta):
 func start_quest() -> void:
 	print("Quest was started")
 	set_active(false)
+	quest.visible = true
+	quest.activate()
+	pause_menu.is_playing_quest = true
+
+func exit_quest(finished: bool = false):
+	quest.visible = false
+	quest.reload()
+	quest.disactivate()
 	refresh_coroutine()
+	pause_menu.is_playing_quest = false
+	if finished:
+		player.health.add_value(treasure)
 
 func refresh_coroutine() -> void:
 	var timer = Timer.new()
