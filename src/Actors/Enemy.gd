@@ -7,6 +7,8 @@ var is_right_direction: = true
 func _ready():
 	health.init(Constants.ENEMY_HEALTH_NUM, Constants.ENEMY_HEALTH_DENOM)
 	update_health_label()
+	$Sprite.flip_h = true
+	speed.x *= Constants.ENEMY_SPEED_SLOWER
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -26,6 +28,8 @@ func check_direction() -> void:
 				return
 		#switch direction
 		if is_right_direction:
+			$Sprite.flip_h = false
 			is_right_direction = false
 		else:
+			$Sprite.flip_h = true
 			is_right_direction = true
