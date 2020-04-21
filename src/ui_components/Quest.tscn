@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/torn_map/first_num.png" type="Texture" id=2]
@@ -46,18 +46,25 @@ extents = Vector2( 67.5155, 86 )
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 283.334, 172.368 )
 
-[node name="CanvasQuest" type="CanvasLayer"]
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 440, 112.857 )
+
+[node name="Quest" type="Control"]
+mouse_filter = 2
 script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -475.0
-margin_top = -295.0
-margin_right = 475.0
-margin_bottom = 295.0
+margin_left = 230.0
+margin_top = 90.0
+margin_right = 1180.0
+margin_bottom = 680.0
 mouse_filter = 2
 color = Color( 0.729412, 0.729412, 0.729412, 1 )
 __meta__ = {
@@ -86,17 +93,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -217.0
-margin_right = 365.0
-margin_bottom = 131.0
+margin_left = 482.0
+margin_top = 173.0
+margin_right = 1047.0
+margin_bottom = 521.0
 rect_scale = Vector2( 0.719999, 0.76 )
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FirstNum" type="StaticBody2D" parent="TornMap"]
-input_pickable = true
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstNum"]
@@ -131,7 +138,6 @@ __meta__ = {
 
 [node name="SecondNum" type="StaticBody2D" parent="TornMap"]
 position = Vector2( 229.167, 0 )
-input_pickable = true
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondNum"]
@@ -389,6 +395,7 @@ margin_top = -263.0
 margin_right = -422.0
 margin_bottom = -263.0
 rect_scale = Vector2( 0.7, 0.7 )
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -404,5 +411,10 @@ shape = SubResource( 10 )
 [node name="OptionsArea" type="Area2D" parent="."]
 position = Vector2( 292, 478 )
 scale = Vector2( 0.7, 0.7 )
-[connection signal="body_entered" from="MapArea" to="." method="_on_MapArea_body_entered"]
-[connection signal="body_exited" from="MapArea" to="." method="_on_MapArea_body_exited"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OptionsArea"]
+position = Vector2( 430, 98.5714 )
+shape = SubResource( 11 )
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="mouse_entered" from="MapArea" to="." method="_on_MapArea_mouse_entered"]
+[connection signal="mouse_exited" from="MapArea" to="." method="_on_MapArea_mouse_exited"]

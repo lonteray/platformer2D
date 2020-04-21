@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 class_name CanvasQuest
 
@@ -19,6 +19,8 @@ var res_denom_label
 var lost_piece  
 var held_object = null
 var map_piece_script = null
+var is_mouse_dragging = false
+var held_in_area = false
 
 
 func _ready():
@@ -37,9 +39,18 @@ func bind_nodes():
 
 func reload():
 	randomize()
+	show_pieces()
 	reload_fractions()
 	update_labels()
 	reload_lost_piece()
+
+func show_pieces():
+	$TornMap/FirstNum.visible = true
+	$TornMap/FirstDenom.visible = true
+	$TornMap/SecondNum.visible = true
+	$TornMap/SecondDenom.visible = true
+	$TornMap/ResNum.visible = true
+	$TornMap/ResDenom.visible = true
 
 func reload_lost_piece():
 	var lost_piece_index =  randi() % PIECES_COUNT
@@ -87,9 +98,9 @@ func create_options():
 		duplicate.connect("clicked", self, "_on_pickable_clicked")
 		var object_width = 2 * duplicate.get_node("CollisionShape2D").get_shape().get_extents().x
 		x_offset += object_width + OPTION_MARGIN
-#		print("Node width is " + str(object_width))
-		#get_node("OptionsArea").call_deferred("add_child", duplicate)
-		get_tree().get_current_scene().call_deferred("add_child", duplicate)
+		duplicate.set_pickable(true)
+		#get_tree().get_current_scene().call_deferred("add_child", duplicate)
+		get_node("OptionsArea").add_child(duplicate)
 
 func reload_fractions():
 	var first_denom = randi() % (Constants.QUEST_DENOM_HIGH_LIMIT + 1) + Constants.QUEST_DENOM_LOW_LIMIT
@@ -97,7 +108,10 @@ func reload_fractions():
 	second.denom = first_denom
 	result.denom = first_denom
 	first.num = randi() % (Constants.QUEST_NUM_HIGH_LIMIT + 1) + Constants.QUEST_NUM_LOW_LIMIT
-	second.num = randi() % (Constants.QUEST_NUM_HIGH_LIMIT + 1) + Constants.QUEST_NUM_LOW_LIMIT
+	while true:
+		second.num = randi() % (Constants.QUEST_NUM_HIGH_LIMIT + 1) + Constants.QUEST_NUM_LOW_LIMIT
+		if (first.num + second.num) % first.denom == 0:
+			break
 	result.add(first)
 	result.add(second, true)
 
@@ -113,20 +127,30 @@ func _on_pickable_clicked(object):
 	if !held_object:
 		held_object = object
 		held_object.pickup()
+		is_mouse_dragging = true
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if held_object and !event.is_pressed():
 			held_object.drop()
+			is_mouse_dragging = false
+			if held_in_area:
+				if held_object.get_node("Label").text == lost_piece.get_node("Label").text:
+					held_object.visible = false
+					lost_piece.visible = true
 			held_object = null
+			held_in_area = false
+
+func _on_MapArea_mouse_entered():
+	if is_mouse_dragging:
+		held_in_area = true
 
 
-func _on_MapArea_body_entered(body):
-	body.area_entrance(true)
-	print("entry")
+func _on_MapArea_mouse_exited():
+	if is_mouse_dragging:
+		held_in_area = false
 
 
-func _on_MapArea_body_exited(body):
-	print("exit")
-	if body.is_in_area():
-		body.area_entrance(false)
+func _on_ExitButton_pressed():
+	get_parent().get_child(0).visible = false
+	reload()
