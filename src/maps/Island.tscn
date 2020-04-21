@@ -208,11 +208,11 @@ texture = ExtResource( 18 )
 
 [node name="FarForest" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.35, 1 )
-motion_mirroring = Vector2( 3072, 0 )
+motion_mirroring = Vector2( 3070, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/FarForest"]
-position = Vector2( 847, 491 )
-scale = Vector2( 0.38425, 0.349811 )
+position = Vector2( 837, 491 )
+scale = Vector2( 0.38425, 0.469811 )
 texture = ExtResource( 19 )
 [connection signal="body_entered" from="Camp" to="Camp" method="_on_Camp_body_entered"]
 [connection signal="body_exited" from="Camp" to="Camp" method="_on_Camp_body_exited"]
