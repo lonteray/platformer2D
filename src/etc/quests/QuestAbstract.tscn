@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/fonts/alexandriaflf_52.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/etc/quests/QuestAbstract.gd" type="Script" id=2]
+[ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/torn_map/second_num.png" type="Texture" id=4]
+[ext_resource path="res://assets/torn_map/first_num.png" type="Texture" id=5]
+[ext_resource path="res://assets/torn_map/res_num.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 3 )
+
+[node name="Control" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -475.0
+margin_top = -295.0
+margin_right = 475.0
+margin_bottom = 295.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.768627, 0.768627, 0.768627, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainSeparator" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TaskLabel" type="Label" parent="MainSeparator"]
+margin_left = 392.0
+margin_right = 557.0
+margin_bottom = 44.0
+size_flags_horizontal = 4
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "BlaBlaBla"
+
+[node name="PanelContainer" type="PanelContainer" parent="MainSeparator"]
+margin_top = 48.0
+margin_right = 607.0
+margin_bottom = 254.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Rows" type="VBoxContainer" parent="MainSeparator/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 600.0
+margin_bottom = 199.0
+
+[node name="UpperRow" type="HBoxContainer" parent="MainSeparator/PanelContainer/Rows"]
+margin_right = 593.0
+margin_bottom = 188.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="FirstNumTexture" type="TextureRect" parent="MainSeparator/PanelContainer/Rows/UpperRow"]
+margin_right = 237.0
+margin_bottom = 188.0
+texture = ExtResource( 5 )
+
+[node name="SecondNumTexture" type="TextureRect" parent="MainSeparator/PanelContainer/Rows/UpperRow"]
+margin_left = 241.0
+margin_right = 439.0
+margin_bottom = 188.0
+texture = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="MainSeparator/PanelContainer/Rows/UpperRow"]
+margin_left = 443.0
+margin_right = 593.0
+margin_bottom = 188.0
+texture = ExtResource( 6 )
+
+[node name="LowRow" type="HBoxContainer" parent="MainSeparator/PanelContainer/Rows"]
+margin_top = 192.0
+margin_right = 593.0
+margin_bottom = 192.0
+
+[node name="TextureRect" type="TextureRect" parent="MainSeparator/PanelContainer/Rows/LowRow"]
+
+[node name="ExitButton" type="Button" parent="MainSeparator"]
+margin_left = 431.0
+margin_top = 258.0
+margin_right = 519.0
+margin_bottom = 322.0
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Exit"
+
+[node name="Label" type="Label" parent="MainSeparator/ExitButton"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -38.0
+margin_top = -29.0
+margin_right = 38.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 1 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}

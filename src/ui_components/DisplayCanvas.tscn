@@ -133,6 +133,7 @@ align = 1
 margin_top = 123.0
 margin_right = 550.0
 margin_bottom = 183.0
+scene_path = "res://src/maps/Island.tscn"
 
 [node name="Label" parent="GameOver/Menu/NewGameButton" index="0"]
 anchor_left = 0.5

@@ -1,0 +1,420 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/torn_map/first_num.png" type="Texture" id=2]
+[ext_resource path="res://assets/torn_map/first_op.png" type="Texture" id=3]
+[ext_resource path="res://assets/torn_map/res_num.png" type="Texture" id=4]
+[ext_resource path="res://assets/torn_map/first_denom.png" type="Texture" id=5]
+[ext_resource path="res://assets/torn_map/second_op.png" type="Texture" id=6]
+[ext_resource path="res://assets/torn_map/second_num.png" type="Texture" id=7]
+[ext_resource path="res://src/fonts/map_font_94.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/torn_map/second_denom.png" type="Texture" id=9]
+[ext_resource path="res://assets/torn_map/res_denom.png" type="Texture" id=10]
+[ext_resource path="res://src/etc/quests/Map_Piece.gd" type="Script" id=11]
+[ext_resource path="res://src/ui_components/Quest.gd" type="Script" id=12]
+[ext_resource path="res://src/fonts/alexandriaflf_52.tres" type="DynamicFont" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+size = 23
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 115.741, 87.7193 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 93.2626, 86 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 72.0435, 91.3743 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 42.4384, 111.477 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 108.025, 90 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 59.7996, 60.307 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 100.979, 91.8275 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 67.5155, 86 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 283.334, 172.368 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 440, 112.857 )
+
+[node name="Quest" type="Control"]
+mouse_filter = 2
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 230.0
+margin_top = 90.0
+margin_right = 1180.0
+margin_bottom = 680.0
+mouse_filter = 2
+color = Color( 0.729412, 0.729412, 0.729412, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TaskLabel" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -305.0
+margin_top = 23.0
+margin_right = 305.0
+margin_bottom = 61.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Choose a correct map piece to convert 
+the equality correct"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TornMap" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 482.0
+margin_top = 173.0
+margin_right = 1047.0
+margin_bottom = 521.0
+rect_scale = Vector2( 0.719999, 0.76 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstNum" type="StaticBody2D" parent="TornMap"]
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstNum"]
+position = Vector2( 113.812, 89.5468 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/FirstNum"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/FirstNum"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 42.0
+margin_top = 30.0
+margin_right = 93.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondNum" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 229.167, 0 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondNum"]
+position = Vector2( 98.3798, 89.5468 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/SecondNum"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/SecondNum"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 61.7284
+margin_top = 29.2397
+margin_right = 112.728
+margin_bottom = 133.24
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 0.996078, 0.996078, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResNum" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 416.667, 0 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/ResNum"]
+position = Vector2( 73.3026, 89.5468 )
+shape = SubResource( 4 )
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/ResNum"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/ResNum"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 73.3026
+margin_top = 29.2397
+margin_right = 124.303
+margin_bottom = 133.24
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondOp" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 373.612, 126.316 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondOp"]
+position = Vector2( 46.2964, 111.477 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/SecondOp"]
+margin_top = -3.655
+margin_right = 91.0
+margin_bottom = 226.345
+mouse_filter = 2
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/SecondOp"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 36.6512
+margin_top = -29.2397
+margin_right = 87.6512
+margin_bottom = 74.7603
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.984314, 0.964706, 0.964706, 1 )
+text = "="
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstDenom" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 0, 160.526 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstDenom"]
+position = Vector2( 109.954, 91.3743 )
+shape = SubResource( 6 )
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/FirstDenom"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/FirstDenom"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 42.0
+margin_top = 30.0
+margin_right = 93.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.988235, 0.988235, 0.988235, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstOp" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 120.833, 97.3685 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/FirstOp"]
+position = Vector2( 65.5865, 65.7895 )
+shape = SubResource( 7 )
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/FirstOp"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/FirstOp"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 65.5865
+margin_right = 116.587
+margin_bottom = 104.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondDenom" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 195.834, 160.526 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/SecondDenom"]
+position = Vector2( 108.025, 100.512 )
+shape = SubResource( 8 )
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/SecondDenom"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/SecondDenom"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 92.5927
+margin_top = 29.2397
+margin_right = 143.593
+margin_bottom = 133.24
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.988235, 0.988235, 0.988235, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResDenom" type="StaticBody2D" parent="TornMap"]
+position = Vector2( 419.445, 178.947 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TornMap/ResDenom"]
+position = Vector2( 77.1606, 89.5468 )
+shape = SubResource( 9 )
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="TornMap/ResDenom"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TornMap/ResDenom"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 69.4446
+margin_top = 12.7924
+margin_right = 120.445
+margin_bottom = 116.792
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 0.996078, 0.996078, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="."]
+margin_left = 1024.0
+margin_top = 462.0
+margin_right = 1112.0
+margin_bottom = 526.0
+custom_fonts/font = ExtResource( 13 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsPanel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -422.0
+margin_top = -263.0
+margin_right = -422.0
+margin_bottom = -263.0
+rect_scale = Vector2( 0.7, 0.7 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapArea" type="Area2D" parent="."]
+position = Vector2( 515, 183 )
+scale = Vector2( 0.719999, 0.76 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapArea"]
+position = Vector2( 240.278, 155.263 )
+shape = SubResource( 10 )
+
+[node name="OptionsArea" type="Area2D" parent="."]
+position = Vector2( 292, 478 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OptionsArea"]
+position = Vector2( 430, 98.5714 )
+shape = SubResource( 11 )
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="mouse_entered" from="MapArea" to="." method="_on_MapArea_mouse_entered"]
+[connection signal="mouse_exited" from="MapArea" to="." method="_on_MapArea_mouse_exited"]
