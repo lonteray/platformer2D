@@ -12,6 +12,7 @@ func _ready():
 	update_health_label()
 	ui_component.update_label(health.num, health.denom)
 	lifetime_coroutine()
+	$Sprite.play("Idle")
 
 func bind_scene_objects() -> void:
 	ui_component = get_tree().get_current_scene().find_node("DisplayCanvas")
@@ -33,6 +34,10 @@ func check_input_on_movement() -> void:
 	if Input.is_action_pressed("jump") and is_on_floor():
 		var jump_strength: = Input.get_action_strength("jump")
 		jump(jump_strength)
+	if not is_on_floor():
+		$Sprite.play("Jump")
+	else:
+		$Sprite.play("Idle")
 
 func jump(strength: float) -> void:
 	velocity.y = -speed.y * strength
