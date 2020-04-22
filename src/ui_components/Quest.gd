@@ -100,6 +100,7 @@ func create_options():
 		duplicate.connect("clicked", self, "_on_pickable_clicked")
 		var object_width = 2 * duplicate.get_node("CollisionShape2D").get_shape().get_extents().x
 		x_offset += object_width + OPTION_MARGIN
+		duplicate.get_node("CollisionShape2D").disabled = true
 		#duplicate.set_pickable(true)
 		#get_tree().get_current_scene().call_deferred("add_child", duplicate)
 		get_node("OptionsArea").add_child(duplicate)

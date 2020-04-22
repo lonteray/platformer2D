@@ -1,14 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/player.png" type="Texture" id=2]
+[ext_resource path="res://assets/monkey/idle1.png" type="Texture" id=2]
 [ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/monkey/idle0.png" type="Texture" id=4]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 9.31098
-height = 18.82
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 3.0
+} ]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 7.04001
+height = 48.7942
+
+[sub_resource type="DynamicFont" id=3]
 size = 43
 use_filter = true
 font_data = ExtResource( 3 )
@@ -19,14 +28,18 @@ collision_mask = 8
 script = ExtResource( 1 )
 speed = Vector2( 800, 1400 )
 
-[node name="player" type="Sprite" parent="."]
-position = Vector2( 0, -80 )
-texture = ExtResource( 2 )
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -126.389 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "Idle"
+frame = 1
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -80.5555 )
+position = Vector2( 0, -137.5 )
 scale = Vector2( 6.11584, 3.93201 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -159.722 )
@@ -37,12 +50,12 @@ drag_margin_v_enabled = true
 smoothing_enabled = true
 
 [node name="HealthLabel" type="Label" parent="."]
-margin_left = -38.8889
-margin_top = -229.167
-margin_right = 1.11111
-margin_bottom = -212.167
+margin_left = -37.5
+margin_top = -325.0
+margin_right = 22.5
+margin_bottom = -277.0
 rect_scale = Vector2( 1.22222, 0.960214 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0/0"
 __meta__ = {
