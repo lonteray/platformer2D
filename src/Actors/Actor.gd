@@ -40,12 +40,3 @@ func set_active(state: bool) -> void:
 	visible = state
 	if state:
 		velocity = move_and_slide(Vector2.ZERO)
-
-#func wait(seconds: float) -> void:
-#	var timer = Timer.new()
-#	timer.wait_time = seconds
-#	timer.one_shot = true
-#	get_tree().get_current_scene().add_child(timer)
-#	timer.start()
-#	return yield(timer, "timeout")
-#	#timer.queue_free()

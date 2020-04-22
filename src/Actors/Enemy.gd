@@ -10,6 +10,19 @@ func _ready():
 	$Sprite.flip_h = true
 	speed.x *= Constants.ENEMY_SPEED_SLOWER
 
+func will_die():
+	$CollisionShape2D.disabled = true
+	visible = false
+	$Sprite.stop()
+	set_physics_process(false)
+
+func reborn(position: Vector2):
+	$CollisionShape2D.disabled = false
+	visible = true
+	$Sprite.play()
+	set_physics_process(true)
+	set_position(position)
+
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		check_direction()

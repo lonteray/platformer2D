@@ -35,10 +35,11 @@ func instantiate() -> void:
 		#display_instances()
 		var index: = 0
 		for i in range(instances.size()):
-			if not is_instance_valid(instances[i]):
+			if not instances[i].visible:
 				#print("Enemy" + str(i) + " was died")
-				instances.erase(instances[i])
-				set_node(positions[index], i)
+#				instances.erase(instances[i])
+#				set_node(positions[index], i)
+				instances[i].reborn(positions[i])
 			index += 1
 
 func set_node(position: Vector2, index: int) -> void:
