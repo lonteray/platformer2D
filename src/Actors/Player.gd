@@ -26,18 +26,24 @@ func check_input_on_movement() -> void:
 	if Input.is_action_pressed("move_left"):
 		var intensity: = Input.get_action_strength("move_left")
 		move_left(intensity)
+		if is_on_floor():
+			$Sprite.flip_h = true
+			$Sprite.play("Walk")
 	elif Input.is_action_pressed("move_right"):
 		var intensity: = Input.get_action_strength("move_right")
 		move_right(intensity)
+		if is_on_floor():
+			$Sprite.flip_h = false
+			$Sprite.play("Walk")
 	else:
 		velocity.x = 0
+		if is_on_floor():
+			$Sprite.play("Idle")
 	if Input.is_action_pressed("jump") and is_on_floor():
 		var jump_strength: = Input.get_action_strength("jump")
 		jump(jump_strength)
 	if not is_on_floor():
 		$Sprite.play("Jump")
-	else:
-		$Sprite.play("Idle")
 
 func jump(strength: float) -> void:
 	velocity.y = -speed.y * strength

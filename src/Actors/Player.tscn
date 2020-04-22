@@ -1,27 +1,36 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/monkey/idle1.png" type="Texture" id=2]
 [ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/monkey/idle0.png" type="Texture" id=4]
 [ext_resource path="res://assets/monkey/jump.png" type="Texture" id=5]
+[ext_resource path="res://assets/monkey/walk0.png" type="Texture" id=6]
+[ext_resource path="res://assets/monkey/walk3.png" type="Texture" id=7]
+[ext_resource path="res://assets/monkey/walk1.png" type="Texture" id=8]
+[ext_resource path="res://assets/monkey/walk2.png" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "Jump",
-"speed": 5.0
+"name": "Walk",
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 7.04001
-height = 48.7942
+height = 56.5652
 
 [sub_resource type="DynamicFont" id=3]
 size = 43
@@ -38,11 +47,12 @@ speed = Vector2( 800, 1400 )
 position = Vector2( 0, -126.389 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-animation = "Idle"
+animation = "Walk"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -137.5 )
+position = Vector2( 0, -127.778 )
 scale = Vector2( 6.11584, 3.93201 )
 shape = SubResource( 2 )
 
