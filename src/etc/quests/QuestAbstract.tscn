@@ -2,10 +2,11 @@
 
 [ext_resource path="res://src/fonts/alexandriaflf_52.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/etc/quests/QuestAbstract.gd" type="Script" id=2]
-[ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/torn_map/second_num.png" type="Texture" id=4]
 [ext_resource path="res://assets/torn_map/first_num.png" type="Texture" id=5]
 [ext_resource path="res://assets/torn_map/res_num.png" type="Texture" id=6]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 40

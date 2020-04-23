@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/monkey/idle1.png" type="Texture" id=2]
-[ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/monkey/idle0.png" type="Texture" id=4]
 [ext_resource path="res://assets/monkey/jump.png" type="Texture" id=5]
 [ext_resource path="res://assets/monkey/walk0.png" type="Texture" id=6]
@@ -30,7 +30,7 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 7.04001
-height = 56.5652
+height = 48.0877
 
 [sub_resource type="DynamicFont" id=3]
 size = 43
@@ -48,7 +48,7 @@ position = Vector2( 0, -126.389 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "Walk"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

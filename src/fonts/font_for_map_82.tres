@@ -3,6 +3,7 @@
 [ext_resource path="res://src/AlexandriaFLF.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 52
+size = 82
+outline_size = 7
 use_filter = true
 font_data = ExtResource( 1 )

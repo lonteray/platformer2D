@@ -1,19 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/ui_components/buttons/ExitButton.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/AlexandriaFLF.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/ui_components/buttons/OptionsButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ui_components/buttons/NewGameButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/enemies.png" type="Texture" id=5]
+[ext_resource path="res://assets/mountain_goat/logo.png" type="Texture" id=5]
 [ext_resource path="res://src/etc/fade_in/FadeIn.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/ui_components/buttons/ExitButton.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 84
-use_filter = true
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
 size = 19
 use_filter = true
 font_data = ExtResource( 2 )
@@ -25,6 +20,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FadeIn" parent="." instance=ExtResource( 6 )]
+color = Color( 0.74902, 0.584314, 0.270588, 0.827451 )
+
 [node name="Menu" type="VBoxContainer" parent="."]
 margin_left = 120.0
 margin_top = 80.0
@@ -34,53 +32,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameName" type="Label" parent="Menu"]
-margin_right = 1126.0
-margin_bottom = 93.0
-custom_fonts/font = SubResource( 1 )
-text = "FractIsland"
-align = 1
-
 [node name="CenterRow" type="HBoxContainer" parent="Menu"]
-margin_top = 97.0
 margin_right = 1126.0
 margin_bottom = 577.0
 size_flags_vertical = 3
 
 [node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
-margin_right = 614.0
-margin_bottom = 480.0
+margin_right = 710.0
+margin_bottom = 577.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
 
 [node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 4 )]
-margin_top = 130.0
-margin_right = 614.0
-margin_bottom = 190.0
+margin_top = 178.0
+margin_right = 710.0
+margin_bottom = 238.0
 scene_path = "res://src/maps/Island.tscn"
 
 [node name="OptionsButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 3 )]
-margin_top = 210.0
-margin_right = 614.0
-margin_bottom = 270.0
+margin_top = 258.0
+margin_right = 710.0
+margin_bottom = 318.0
+
+[node name="Label" parent="Menu/CenterRow/Buttons/OptionsButton" index="0"]
+text = "Game Guide"
 
 [node name="ExitButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 1 )]
-margin_top = 290.0
-margin_right = 614.0
-margin_bottom = 350.0
+margin_top = 338.0
+margin_right = 710.0
+margin_bottom = 398.0
 script = ExtResource( 7 )
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu/CenterRow"]
-margin_left = 618.0
+margin_left = 714.0
 margin_right = 1126.0
-margin_bottom = 480.0
+margin_bottom = 577.0
 
 [node name="Characters" type="TextureRect" parent="Menu/CenterRow/CenterContainer"]
-margin_top = 117.0
-margin_right = 508.0
-margin_bottom = 363.0
+margin_top = 58.0
+margin_right = 412.0
+margin_bottom = 519.0
 texture = ExtResource( 5 )
 
 [node name="VersionLabel" type="Label" parent="Menu"]
@@ -88,11 +81,10 @@ margin_top = 581.0
 margin_right = 1126.0
 margin_bottom = 628.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Version 1.0   2020
 Stepan Savchuk"
 align = 1
-
-[node name="FadeIn" parent="." instance=ExtResource( 6 )]
-visible = false
 [connection signal="pressed" from="Menu/CenterRow/Buttons/ExitButton" to="Menu/CenterRow/Buttons/ExitButton" method="_on_ExitButton_pressed"]
+
+[editable path="Menu/CenterRow/Buttons/OptionsButton"]

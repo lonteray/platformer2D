@@ -12,9 +12,9 @@ const FIGHT_CLOUD_OFFSET = Vector2(0.0, -70.0)
 const FIGHT_TIME = 1.0
 
 #for player
-const PLAYER_LIFETIME = 10.0 # seconds
-const PLAYER_HEALTH_NUM = 3
-const PLAYER_HEALTH_DENOM = 3
+const PLAYER_LIFETIME = 25.0 # seconds
+const PLAYER_HEALTH_NUM = 5
+const PLAYER_HEALTH_DENOM = 5
 const PLAYER_HEALTH_INNER_STEP = 0.1
 
 #for enemy
@@ -26,8 +26,8 @@ const ENEMY_SPEED_SLOWER = 0.7
 const ENEMY_RESPAWN_TIME = 5.0
 
 #for player tools
-const CAMP_HEALING_REFRESH_TIME = 4.0
-const QUEST_CHEST_REFRESH_TIME = 5.0
+const CAMP_HEALING_REFRESH_TIME = 60.0
+const QUEST_CHEST_REFRESH_TIME = 60.0
 
 #for quest
 const QUEST_DENOM_LOW_LIMIT = 2

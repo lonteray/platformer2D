@@ -3,7 +3,7 @@ extends PlayerTool
 class_name QuestChest
 var quest
 var pause_menu
-export var treasure = 3
+export var treasure = 1.5
 
 func _ready():
 	quest = get_tree().get_current_scene().find_node("Quest")
@@ -35,6 +35,7 @@ func start_quest() -> void:
 	quest.visible = true
 	quest.activate()
 	pause_menu.is_playing_quest = true
+	player.playing_quest = true
 
 func exit_quest(finished: bool = false):
 	quest.visible = false
@@ -42,8 +43,10 @@ func exit_quest(finished: bool = false):
 	quest.disactivate()
 	refresh_coroutine()
 	pause_menu.is_playing_quest = false
+	player.playing_quest = false
 	if finished:
 		player.health.add_value(treasure)
+		player.update_health_label()
 
 func refresh_coroutine() -> void:
 	var timer = Timer.new()

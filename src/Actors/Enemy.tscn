@@ -2,9 +2,10 @@
 
 [ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/mountain_goat/goat_first_forward.png" type="Texture" id=2]
-[ext_resource path="res://src/fonts/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/AlexandriaFLF.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/mountain_goat/goat_first_back.png" type="Texture" id=4]
 [ext_resource path="res://assets/mountain_goat/goat_idle_anim.png" type="Texture" id=5]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -35,7 +36,7 @@ position = Vector2( 0, -111.25 )
 scale = Vector2( 0.490023, 0.500288 )
 frames = SubResource( 1 )
 animation = "Run"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

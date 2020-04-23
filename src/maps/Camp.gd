@@ -20,6 +20,7 @@ func _process(delta):
 
 func heal() -> void:
 	player.health.add_value(adding_health)
+	player.update_health_label()
 	set_active(false)
 	refresh_coroutine()
 

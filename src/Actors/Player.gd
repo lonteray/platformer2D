@@ -5,6 +5,7 @@ class_name Player
 var cloud = null
 var ui_component = null
 var is_alive: = true
+var playing_quest = false
 
 func _ready():
 	health.init(Constants.PLAYER_HEALTH_NUM, Constants.PLAYER_HEALTH_DENOM)
@@ -23,13 +24,13 @@ func _physics_process(delta: float) -> void:
 	check_input_on_movement()
 
 func check_input_on_movement() -> void:
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("move_left") and not playing_quest:
 		var intensity: = Input.get_action_strength("move_left")
 		move_left(intensity)
 		if is_on_floor():
 			$Sprite.flip_h = true
 			$Sprite.play("Walk")
-	elif Input.is_action_pressed("move_right"):
+	elif Input.is_action_pressed("move_right") and not playing_quest:
 		var intensity: = Input.get_action_strength("move_right")
 		move_right(intensity)
 		if is_on_floor():
@@ -38,8 +39,9 @@ func check_input_on_movement() -> void:
 	else:
 		velocity.x = 0
 		if is_on_floor():
+			$Sprite.flip_h = false
 			$Sprite.play("Idle")
-	if Input.is_action_pressed("jump") and is_on_floor():
+	if Input.is_action_pressed("jump") and is_on_floor() and not playing_quest:
 		var jump_strength: = Input.get_action_strength("jump")
 		jump(jump_strength)
 	if not is_on_floor():
@@ -127,7 +129,7 @@ func lifetime_coroutine() -> void:
 					inner += Constants.PLAYER_HEALTH_INNER_STEP
 			else:
 				was_fight = true
-		#health.num -= 1
+		health.num -= 1
 		ui_component.update_label(health.num, health.denom)
 		if health.num <= 0:
 			will_die()
